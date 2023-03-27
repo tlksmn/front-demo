@@ -1,0 +1,30 @@
+<div>
+  <form *ngIf="loginMode" #signIn="ngForm">
+    <h1>Вход в личный кабинет</h1>
+    <input type="email" name="email" id="email" ngModel required>
+    <label for="email">Электронный адрес</label>
+    <br>
+    <input type="password" name="password" id="password" ngModel required>
+    <label for="email">Пароль</label>
+    <br>
+    <button type="submit" [disabled]="signIn.invalid" (click)="onSignIn(signIn)">Войти</button>
+  </form>
+
+  <form *ngIf="!loginMode" #signUp="ngForm">
+    <h1>Зарегистрироваться</h1>
+    <input type="email" name="email" id="email_reg" required ngModel>
+    <label for="email_reg">Электронный адрес</label>
+    <br>
+    <input type="password" name="password" id="password_reg" required ngModel>
+    <label for="password_reg">Пароль</label>
+    <br>
+    <input type="tel" name="phone" id="phoneNumber" required ngModel>
+    <label for="phoneNumber">Номер телефона</label>
+    <br>
+    <input type="text" name="name" id="name" required ngModel>
+    <label for="name">Имя фамилия</label>
+    <br>
+    <button type="submit" [disabled]="signUp.invalid" (click)="onSignUp(signUp)">Зарегистрироваться</button>
+  </form>
+</div>
+<button (click)="modeChange()">Изменить режим</button>

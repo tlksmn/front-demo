@@ -1,0 +1,5 @@
+.rival-header-container{
+  display: grid;
+  grid-template-columns: [city]5em [price]12em [minPice]12em [action]5em;
+  grid-template-rows: auto;
+}

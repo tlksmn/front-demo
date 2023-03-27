@@ -1,0 +1,27 @@
+<div>
+  <div *ngIf="request$|async as response">
+    <div>
+      <div *ngFor="let seller of response.list">
+        <div (click)="switchToSeller(seller.id)">{{seller.username}} {{seller.email}} {{seller.phone}} {{seller.count.activeCount}}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+  <ng-container *ngTemplateOutlet="addSelectFormTemplate"/>
+</div>
+
+<ng-template #addSelectFormTemplate>
+  <button *ngIf="(addModeStream|async); let mode" (click)="changeMode(!mode)">Закрыть</button>
+  <form #addSellerForm="ngForm" *ngIf="addModeStream|async; let mode">
+    <input type="email" name="email" id="email" ngModel required email>
+    <label for="email">Электронная почта магазина</label>
+    <br>
+    <input type="password" name="password" id="password" ngModel required>
+    <label for="password">Пароль</label>
+    <br>
+    <button [disabled]="addSellerForm.invalid" (click)="addSeller(addSellerForm)">Добавить магазин</button>
+  </form>
+  <button *ngIf="!(addModeStream|async); let mode" (click)="changeMode(mode)">Добавить пользователя</button>
+</ng-template>

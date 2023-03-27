@@ -1,0 +1,29 @@
+<form action="" [formGroup]="rivalForm" class="rival-container">
+  <div (click)="switchRivals(!opened)">{{rival.city.name}}</div>
+  <div class="group-currency">
+    <label for="minPrice">₸</label>
+    <input type="number" formControlName="minPrice" id="minPrice">
+  </div>
+  <div class="group-currency">
+    <label for="price">₸</label>
+    <input type="number" formControlName="price" id="price">
+  </div>
+  <div>
+    <button>☑︎</button>
+  </div>
+</form>
+
+<div *ngIf="opened">
+  <ng-container *ngTemplateOutlet="configHeader"></ng-container>
+  <div *ngFor="let config of rival.pointConfigs">
+    <app-config [config]="config"></app-config>
+  </div>
+</div>
+
+<ng-template #configHeader>
+  <div class="config-header">
+    <div>Точка</div>
+    <div>Наличие</div>
+    <div>Предзаказ</div>
+  </div>
+</ng-template>

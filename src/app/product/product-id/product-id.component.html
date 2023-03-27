@@ -1,0 +1,22 @@
+<div>
+  <p (click)="switchRivals(true)">
+    {{product.sku}}
+  </p>
+  <p (click)="switchRivals(false)">
+    {{product.name}}
+  </p>
+  <div *ngIf="opened">
+    <ng-container *ngTemplateOutlet="rivalHeader"></ng-container>
+    <div *ngFor="let rivalConfig of product.rivalConfigs">
+      <app-rival [rival]="rivalConfig"></app-rival>
+    </div>
+  </div>
+</div>
+
+<ng-template #rivalHeader>
+  <div class="rival-header-container">
+    <div>Город</div>
+    <div>Факт цена</div>
+    <div>Мин цена</div>
+  </div>
+</ng-template>
