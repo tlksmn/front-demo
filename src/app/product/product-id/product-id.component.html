@@ -1,15 +1,16 @@
-<div>
-  <p (click)="switchRivals(true)">
-    {{product.sku}}
-  </p>
-  <p (click)="switchRivals(false)">
-    {{product.name}}
-  </p>
-  <div *ngIf="opened">
-    <ng-container *ngTemplateOutlet="rivalHeader"></ng-container>
-    <div *ngFor="let rivalConfig of product.rivalConfigs">
-      <app-rival [rival]="rivalConfig"></app-rival>
-    </div>
+<div class="product-container" (click)="switchRivals(!opened)">
+  <div (click)="openProduct()">
+    <img [src]="product.image" style="width: 1em; height: 1em">
+  </div>
+  <div>{{product.sku}}</div>
+  <div>{{product.brand}}</div>
+  <div class="name">{{product.name}}</div>
+</div>
+
+<div *ngIf="opened" class="rival-container">
+  <ng-container *ngTemplateOutlet="rivalHeader"></ng-container>
+  <div *ngFor="let rivalConfig of product.rivalConfigs">
+    <app-rival [rival]="rivalConfig"></app-rival>
   </div>
 </div>
 

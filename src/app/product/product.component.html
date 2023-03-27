@@ -1,10 +1,10 @@
-<div *ngIf="currentPageStream|async as currentPage" class="pagination-container">
-  <div *ngIf="perPageStream|async as perPage" class="pagination-elements">
-    <div *ngIf="filterStream|async as filter">
+<ng-container *ngIf="currentPageStream|async as currentPage" >
+  <div *ngIf="perPageStream|async as perPage" class="pagination-container">
+    <div *ngIf="filterStream|async as filter" class="pagination-elements">
       <div class="btn" (click)="onCurrentPageUpdate(currentPage-1)">предыдущая страница</div>
       <div class="page">страница: {{currentPage}}</div>
       <div>
-        <label for="perPage">в каждой странице по </label>
+        <label for="perPage">по </label>
         <select name="perPage" id="perPage" #perPageSelect (change)="onPerPageUpdate(+perPageSelect.value)">
           <option *ngFor="let dPerPage of defaultPerPage" [selected]="dPerPage===perPage"
                   [value]="dPerPage">{{dPerPage}}</option>
@@ -12,7 +12,8 @@
         <label for="perPage"> товаров</label>
       </div>
       <div>
-        <select name="" id="" #filterSelect (change)="onFilterUpdate(filterSelect.value)">
+        <label for="filterSelect">фильтр</label>
+        <select name="" id="filterSelect" #filterSelect (change)="onFilterUpdate(filterSelect.value)">
           <option *ngFor="let dFilter of defaultFilter; let i=index" [selected]="dFilter===filter"
                   [value]="dFilter">{{defaultFilterString[i]}}</option>
         </select>
@@ -20,13 +21,25 @@
       <div class="btn" (click)="onCurrentPageUpdate(currentPage+1)">следующая страница</div>
     </div>
   </div>
-</div>
+</ng-container>
 
 <div *ngIf="requestProducts$|async as request">
   <div>всего товаров :: {{request.total}} штук</div>
   <div>
-    <div *ngFor="let product of request.list">
-      <app-product-id [product]="product"></app-product-id>
+    <ng-container *ngTemplateOutlet="productHeader"></ng-container>
+    <div class="product-list-container">
+      <div *ngFor="let product of request.list">
+        <app-product-id [product]="product"></app-product-id>
+      </div>
     </div>
   </div>
 </div>
+
+<ng-template #productHeader>
+  <div class="product-header-container">
+    <div></div>
+    <div>Артикул</div>
+    <div>Бренд</div>
+    <div>Название</div>
+  </div>
+</ng-template>

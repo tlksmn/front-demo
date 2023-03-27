@@ -13,4 +13,7 @@ export class ProductIdComponent {
   switchRivals(value: boolean){
    this.opened = value
   }
+  openProduct(){
+   window.open(this.product.url, '_blank')
+  }
 }

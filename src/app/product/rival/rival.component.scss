@@ -1,16 +1,28 @@
 .rival-container{
   display: grid;
-  grid-template-columns: [city]5em [price]12em [minPice]12em [action]5em;
+  grid-template-columns: [city]6em [price]6em [minPice]6em [action]4em;
   grid-template-rows: auto;
+  align-items: center;
+  &:hover{
+    background: #d1d5dc;
+    color: #f7faff;
+    cursor: pointer;
+  }
+
   .group-currency{
     input{
       border: none;
       max-width: 60%;
+      background: none;
     }
   }
 }
 .config-header{
   display: grid;
-  grid-template-columns: [poinName]5em [available]5em [preOrder]5em;
+  grid-template-columns: [poinName]5em [available]5em [preOrder]4em;
   grid-template-rows: auto;
+  padding-bottom: 0.2em;
+}
+.config-container{
+  padding-left: 2em;
 }
