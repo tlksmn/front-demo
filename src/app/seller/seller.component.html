@@ -1,8 +1,9 @@
-<div>
+<div class="seller-list-container">
   <div *ngIf="request$|async as response">
-    <div>
+    <div *ngIf="response.total>0 else noContent">
+      <ng-container *ngTemplateOutlet="sellerHeader"></ng-container>
       <div *ngFor="let seller of response.list">
-        <div (click)="switchToSeller(seller.id)">{{seller.username}} {{seller.email}} {{seller.phone}} {{seller.count.activeCount}}</div>
+        <app-id [seller]="seller"></app-id>
       </div>
     </div>
   </div>
@@ -24,4 +25,21 @@
     <button [disabled]="addSellerForm.invalid" (click)="addSeller(addSellerForm)">Добавить магазин</button>
   </form>
   <button *ngIf="!(addModeStream|async); let mode" (click)="changeMode(mode)">Добавить пользователя</button>
+</ng-template>
+
+<ng-template #sellerHeader>
+  <div class="seller-header-container">
+    <div>Магазин</div>
+    <div>Предзаказ</div>
+    <div>Конкурентность</div>
+    <div>Поднятие</div>
+    <div>Понижение</div>
+    <div></div>
+  </div>
+</ng-template>
+
+<ng-template #noContent>
+  <div>
+    <h1>Еще нет продавцов</h1>
+  </div>
 </ng-template>

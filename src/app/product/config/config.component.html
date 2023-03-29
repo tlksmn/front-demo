@@ -1,9 +1,12 @@
-<form [formGroup]="configForm" class="config-container">
+<form [formGroup]="configForm" class="config-container" (ngSubmit)="submitForm()">
   <div>{{configPoint.point.name}}</div>
   <div>
-    <input type="checkbox" formControlName="available">
+    <input class="toggle-button" type="checkbox" formControlName="available">
   </div>
   <div>
-    <input type="number" name="" id="" formControlName="preOrder">
+    <input type="number" step="2" name="" id="" formControlName="preOrder" max="15" min="0">
+  </div>
+  <div>
+    <button type="submit" *ngIf="showSaveBtn && configForm.valid">✅</button>
   </div>
 </form>

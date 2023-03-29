@@ -1,16 +1,20 @@
 .config-container{
   display: grid;
-  grid-template-columns: [poinName]5em [available]5em [preOrder]4em;
+  grid-template-columns: [poinName]6em [available]6em [preOrder]6em [action]4em;
   grid-template-rows: auto;
   align-items: center;
+  padding: 0.1em 0;
   &:hover{
-    background: #d1d5dc;
-    color: #f7faff;
+    background: #f1f1f1;
     cursor: pointer;
   }
-  input{
+  input[type="number"]{
     border: none;
     max-width: 60%;
+    background: none;
+  }
+  button{
+    border: none;
     background: none;
   }
 }

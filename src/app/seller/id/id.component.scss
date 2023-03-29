@@ -1,0 +1,10 @@
+.seller-id-container{
+  display: grid;
+  grid-template-columns: 8em[shopName] 6em[preOrderSt] 8em[rivalSt] 6em[promotionSt] 6em[demotionSt] 6em[action];
+  grid-template-rows: auto;
+  padding-bottom: 0.1em;
+  button{
+    border: none;
+    background: none;
+  }
+}

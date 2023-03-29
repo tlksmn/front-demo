@@ -15,7 +15,6 @@ export class SellerComponent {
   constructor(
     private readonly sellerService: SellerService,
     private readonly notificationService: NotificationService,
-    private readonly router: Router
   ) {}
 
   request$: Observable<SellerResponseApiT> = this.sellerService.getList()
@@ -34,10 +33,5 @@ export class SellerComponent {
         return NEVER
       })
     ).subscribe()
-  }
-
-  async switchToSeller(id: number) {
-    await this.router.navigate(['seller', id, 'products'])
-    return;
   }
 }

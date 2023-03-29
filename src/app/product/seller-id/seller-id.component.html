@@ -1,0 +1,60 @@
+<div *ngIf="request$|async as seller else noContent" class="seller-container">
+  <div class="main-info">
+    <div class="image">
+      <img [src]="seller.logoUrl || 'https://nologo.b-cdn.net/wp-content/uploads/2021/01/nologo-logo-www-black.png' ">
+    </div>
+    <div>{{seller.fullName}}</div>
+  </div>
+
+  <div class="file-info">
+    <div (click)="copy('xml', seller.sysId)">xml</div>
+    <div (click)="copy('xlsx', seller.sysId)">xlsx</div>
+  </div>
+
+  <div class="config-info">
+    <div class="checkbox-group">
+      <div>Прездаказ:</div>
+      <div *ngIf="seller.preOrderStatus else no" style="color: green">да</div>
+    </div>
+    <div class="checkbox-group">
+      <div>Конкурентность:</div>
+      <div *ngIf="seller.rivalStatus else no" style="color: green">да</div>
+    </div>
+    <div class="checkbox-group">
+      <div>Поднятие:</div>
+      <div *ngIf="seller.promotion else no" style="color: green">да</div>
+    </div>
+    <div class="checkbox-group">
+      <div>Понижение:</div>
+      <div *ngIf="seller.demotion else no" style="color: green">да</div>
+    </div>
+  </div>
+  <div class="point-info">
+    <div *ngFor="let point of seller.points" class="point">
+      <p [style]="point.status==='ACTIVE' ? 'color: green': 'color: grey'">{{point.name}}</p>
+      <p>{{point.streetName}}</p>
+    </div>
+  </div>
+  <div class="count-info">
+    <div>Актиные: {{seller.count.activeCount}} шт.</div>
+    <div>В архиве: {{seller.count.archiveCount}} шт.</div>
+    <div>В обработке: {{seller.count.processingCount}} шт.</div>
+    <div>Просроченные: {{seller.count.expiringCount}} шт.</div>
+  </div>
+
+  <div class="currency-info" *ngIf="currencyRequest$|async as response">
+    <div *ngFor="let elem  of response.data.currencies" class="item">
+      <div>{{elem.currency}}</div>
+      <div [style]="elem.buy_state==='DOWN'? 'color: red': 'color: green'">{{elem.buy}}</div>
+      <div [style]="elem.sell_state==='DOWN'? 'color: red': 'color: green'">{{elem.sell}}</div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noContent>
+  <h1>Seller Not Found!</h1>
+</ng-template>
+
+<ng-template #no>
+  <div style="color: red">нет</div>
+</ng-template>

@@ -1,0 +1,23 @@
+<form class="seller-id-container" [formGroup]="sellerForm" (ngSubmit)="submitForm()">
+  <div (click)="switchToSeller()">{{seller.username}}</div>
+  <div>
+    <input type="checkbox" name="preOrderStatus"
+           formControlName="preOrderStatus" class="toggle-button"/>
+  </div>
+  <div>
+    <input type="checkbox" name="rivalStatus" formControlName="rivalStatus"
+           class="toggle-button"/>
+  </div>
+  <div>
+    <input type="checkbox" name="promotion" formControlName="promotion"
+           class="toggle-button"/>
+  </div>
+  <div>
+    <input type="checkbox" name="demotion" formControlName="demotion"
+           class="toggle-button"/>
+  </div>
+  <div>
+    <button *ngIf="edited && sellerForm.valid" type="submit">✅</button>
+    <button disabled *ngIf="!authService.user.activated">❌</button>
+  </div>
+</form>

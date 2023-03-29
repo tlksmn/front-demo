@@ -1,0 +1,55 @@
+.seller-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+
+  .main-info {
+    .image {
+      text-align: left;
+      img {
+        max-width: 3em;
+        max-height: 3em;
+      }
+    }
+  }
+
+  .file-info{
+    display: flex;
+    gap: 2em;
+    font-weight: 800;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+
+  .config-info {
+    //color: #595959;
+    .checkbox-group{
+      padding-bottom: 0.2em;
+      display: grid;
+      grid-template-columns: [name]8em [value]3em;
+    }
+  }
+
+  .point-info {
+    .point {
+      display: flex;
+      gap: 1em;
+
+      p {
+        max-width: 16em;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+  }
+
+  .currency-info{
+    .item{
+      display: grid;
+      grid-template-columns: [name]3em [sell]3em [buy]3em;
+      padding: 0.02em 0;
+    }
+  }
+}

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule} from "@angular/forms";
 import { SellerComponent } from './seller.component';
+import {IdModule} from "./id/id.module";
 
 @NgModule({
   declarations: [
@@ -9,7 +10,8 @@ import { SellerComponent } from './seller.component';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    IdModule
   ]
 })
 export class SellerModule { }

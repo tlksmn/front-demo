@@ -1,22 +1,22 @@
 .rival-header-container{
   display: grid;
-  grid-template-columns: [city]6em [price]6em [minPice]6em [action]4em;
+  grid-template-columns: [city]8em [rivals]6em [price]6em [minPice]6em  [action]4em;
   grid-template-rows: auto;
   padding-bottom: 0.2em;
 }
 
 .product-container{
   display: grid;
-  grid-template-columns: [img]2em [sku]5em [brand]8em [name]26em;
+  grid-template-columns: [img]2em [sku]5em [brand]8em [name]32em;
   grid-template-rows: auto;
   align-items: center;
+  padding: 0.1em 0;
   &:hover{
-    background: #d1d5dc;
-    color: #f7faff;
+    background: #f1f1f1;
     cursor: pointer;
   }
   .name{
-    max-width: 24em;
+    max-width: 31em;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden
@@ -24,7 +24,7 @@
 }
 
 .rival-container{
-  padding-left: 2em;
+  padding-left: 7em;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
 }

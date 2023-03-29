@@ -1,22 +1,25 @@
-<form action="" [formGroup]="rivalForm" class="rival-container">
+<form action="" [formGroup]="rivalForm" [class]="opened ? 'rival-container open': 'rival-container'" (ngSubmit)="submitForm()">
   <div (click)="switchRivals(!opened)">{{rival.city.name}}</div>
+  <div>n место</div>
   <div class="group-currency">
     <label for="minPrice">₸</label>
-    <input type="number"  formControlName="price" id="minPrice">
+    <input type="number" step="100" formControlName="price" id="minPrice" min="1">
   </div>
   <div class="group-currency">
     <label for="price">₸</label>
-    <input type="number" formControlName="minPrice"  id="price">
+    <input type="number" step="100" formControlName="minPrice" id="price" min="0">
   </div>
   <div>
-    <button>☑︎</button>
+    <button type="submit" *ngIf="showSaveBtn && rivalForm.valid">✅</button>
   </div>
 </form>
 
 <div *ngIf="opened" class="config-container">
-  <ng-container *ngTemplateOutlet="configHeader"></ng-container>
-  <div *ngFor="let config of rival.pointConfigs">
-    <app-config [config]="config"></app-config>
+  <div>
+    <ng-container *ngTemplateOutlet="configHeader"></ng-container>
+    <div *ngFor="let config of rival.pointConfigs">
+      <app-config [config]="config"></app-config>
+    </div>
   </div>
 </div>
 

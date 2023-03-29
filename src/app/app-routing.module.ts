@@ -12,18 +12,19 @@ import {SellerComponent} from "./seller/seller.component";
 import {AuthGuard} from "../common/guard/auth.guard";
 import {ProductComponent} from "./product/product.component";
 import {ProductModule} from "./product/product.module";
+import {ProductIdModule} from "./product/product-id/product-id.module";
 
 const routes: Routes = [
-  {path: 'auth', component: AuthComponent},
+  {path: 'auth', component: AuthComponent, title: 'biy.kz | Авторизация'},
   {path: 'home', redirectTo: '/'},
-  {path: 'sellers', component: SellerComponent, canActivate: [AuthGuard]},
-  {path: 'seller/:id/products', component: ProductComponent, canActivate: [AuthGuard]},
-  {path: '', component: MainComponent},
-  {path: '**', component: NfComponent}
+  {path: 'sellers', component: SellerComponent, canActivate: [AuthGuard], title: 'biy.kz | Продавцы'},
+  {path: 'seller/:id/products', component: ProductComponent, canActivate: [AuthGuard], title: 'biy.kz | Товары'},
+  {path: '', component: MainComponent, title: 'Главная страница'},
+  {path: '**', component: NfComponent, title: 'Ooops! Ошибка'}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), AuthModule, MainModule, NfModule, SellerModule, ProductModule],
+  imports: [RouterModule.forRoot(routes), AuthModule, MainModule, NfModule, SellerModule, ProductModule, ProductIdModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

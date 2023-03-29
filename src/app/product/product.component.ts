@@ -43,9 +43,8 @@ export class ProductComponent {
       map((paramMap) => +paramMap.get('id')!)),
     this.filterStream
   ).pipe(
-    debounceTime(1200),
+    debounceTime(1400),
     switchMap(([currentPage, perPage, sellerId,filterValue]) => {
-      console.log(currentPage, perPage, sellerId, filterValue)
       if (isNaN(sellerId)) {
         return throwError('Продавец не найден')
       }
