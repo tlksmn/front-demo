@@ -1,0 +1,4 @@
+.user-container{
+  display: grid;
+  grid-template-columns: [id]1em [name]8em [email]12em [phone]10em [activated]4em;
+}

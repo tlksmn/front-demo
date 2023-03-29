@@ -13,18 +13,21 @@ import {AuthGuard} from "../common/guard/auth.guard";
 import {ProductComponent} from "./product/product.component";
 import {ProductModule} from "./product/product.module";
 import {ProductIdModule} from "./product/product-id/product-id.module";
+import {AdminComponent} from "./admin/admin.component";
+import {AdminModule} from "./admin/admin.module";
 
 const routes: Routes = [
   {path: 'auth', component: AuthComponent, title: 'biy.kz | Авторизация'},
   {path: 'home', redirectTo: '/'},
   {path: 'sellers', component: SellerComponent, canActivate: [AuthGuard], title: 'biy.kz | Продавцы'},
   {path: 'seller/:id/products', component: ProductComponent, canActivate: [AuthGuard], title: 'biy.kz | Товары'},
+  {path: 'admin', component: AdminComponent},
   {path: '', component: MainComponent, title: 'Главная страница'},
   {path: '**', component: NfComponent, title: 'Ooops! Ошибка'}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), AuthModule, MainModule, NfModule, SellerModule, ProductModule, ProductIdModule],
+  imports: [RouterModule.forRoot(routes), AuthModule, MainModule, NfModule, SellerModule, ProductModule, ProductIdModule, AdminModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

@@ -1,0 +1,5 @@
+<div *ngIf="request$|async as response">
+  <div *ngFor="let user of response.list">
+    <app-id-admin [user]="user"></app-id-admin>
+  </div>
+</div>

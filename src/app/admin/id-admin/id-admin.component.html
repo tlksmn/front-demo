@@ -1,0 +1,17 @@
+<form class="user-container" [formGroup]="userForm">
+  <div>
+    {{user.id}}
+  </div>
+  <div>
+    <div>{{user.name}}</div>
+  </div>
+  <div>
+    <div>{{user.email}}</div>
+  </div>
+  <div>
+    <div>{{user.phone}}</div>
+  </div>
+  <div>
+    <input type="checkbox" formControlName="activated"/>
+  </div>
+</form>
