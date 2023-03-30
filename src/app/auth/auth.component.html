@@ -1,19 +1,49 @@
-<button (click)="modeChange()">Изменить режим</button>
-
 <div class="auth-container">
   <form *ngIf="loginMode" #signIn="ngForm">
     <h1>Вход в личный кабинет</h1>
     <input type="email" name="email" id="email" ngModel required placeholder="e@mail.kz">
     <input type="password" name="password" id="password" ngModel required placeholder="*Пароль1@">
-    <button type="submit" [disabled]="signIn.invalid" (click)="onSignIn(signIn)">Войти</button>
+    <button class="btn btn-secondary" type="submit" [disabled]="signIn.invalid" (click)="onSignIn(signIn)">
+      Войти
+    </button>
   </form>
 
   <form *ngIf="!loginMode" #signUp="ngForm">
     <h1>Зарегистрироваться</h1>
-    <input type="email" name="email" id="email_reg" placeholder="e1@mail.kz" required ngModel>
+    <input type="email" name="email" id="email_reg" placeholder="e1@mail.kz" required ngModel list="defaultEmails">
     <input type="password" name="password" id="password_reg" placeholder="*Пароль2@" required ngModel>
-    <input type="tel" name="phone" id="phoneNumber" placeholder="+77058902548" required ngModel>
-    <input type="text" name="name" id="name" placeholder="Батыр Адилет" required ngModel>
-    <button type="submit" [disabled]="signUp.invalid" (click)="onSignUp(signUp)">Зарегистрироваться</button>
+    <input type="tel" name="phone" id="phoneNumber" placeholder="+77058902548" required ngModel list="defaultTels">
+    <input type="text" name="name" id="name" placeholder="Батыр Адилет" required ngModel list="defaultName">
+    <button class="btn btn-primary" type="submit" [disabled]="signUp.invalid" (click)="onSignUp(signUp)">
+      Зарегистрироваться
+    </button>
+    <datalist id="defaultTels">
+      <option value="+77775617432"></option>
+      <option value="+77076532097"></option>
+      <option value="+77024746283"></option>
+      <option value="+77067823475"></option>
+    </datalist>
+    <datalist id="defaultEmails">
+      <option value="kvadrat@gmail.com"></option>
+      <option value="krug@mail.ru"></option>
+      <option value="oval@yandex.ru"></option>
+      <option value="ellips@mysite.kz"></option>
+    </datalist>
+    <datalist id="defaultName">
+      <option value="Зауреш Касым"></option>
+      <option value="Екатерина Павловна"></option>
+      <option value="Алексей Калач"></option>
+      <option value="Алихан Алиев"></option>
+    </datalist>
   </form>
 </div>
+
+<div class="action-container">
+  <ng-container *ngIf="loginMode else signUp">
+    или <a (click)="modeChange()">зарегистроваться</a>
+  </ng-container>
+</div>
+
+<ng-template #signUp>
+  или <a (click)="modeChange()">войти</a>
+</ng-template>

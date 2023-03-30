@@ -11,9 +11,39 @@
       border-radius: 0.2em;
       border-bottom: 0.1px #d7d7d7 solid;
     }
-
-    & > * {
-      margin: 0.2em;
+    .btn{
+      border: 0.1px solid silver;
+      border-radius: 0.2em;
+      padding: 0.3em;
+      background: #3787FF;
+      color: #f7faff;
+      &-primary {
+        background: #3787FF;
+        color: #f7faff;
+      }
+      &-secondary {
+        background: #12d200;
+        color: #f7faff;
+      }
+      &:disabled{
+        background: #ababab;
+        color: white;
+      }
     }
+    & > * {
+      margin: 0.4em;
+    }
+  }
+}
+
+.action-container{
+  padding-top: 1em;
+  text-align: right;
+  &:hover{
+    cursor: pointer;
+  }
+  a{
+    text-decoration: underline #52bdff;
+    color: rgb(52, 178, 255);
   }
 }
