@@ -8,6 +8,7 @@ export type UserT = AT & {
   phone: string;
   activated: boolean;
   name: string;
+  hash: string;
   count: ProductCountT
   sellers: SellerT[];
   cities: CityT[];

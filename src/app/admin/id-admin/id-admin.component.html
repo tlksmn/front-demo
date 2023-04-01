@@ -1,9 +1,9 @@
-<form class="user-container" [formGroup]="userForm">
+<form class="user-container" [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <div>
     {{user.id}}
   </div>
   <div>
-    <div>{{user.name}}</div>
+    <div (click)="changeSellerMode()">{{user.name}}</div>
   </div>
   <div>
     <div>{{user.email}}</div>
@@ -12,6 +12,40 @@
     <div>{{user.phone}}</div>
   </div>
   <div>
-    <input type="checkbox" formControlName="activated"/>
+    <input class="toggle-button" type="checkbox" formControlName="activated"/>
+  </div>
+  <div>
+    <button *ngIf="userForm.valid && edited" type="submit">✅</button>
   </div>
 </form>
+
+<div *ngIf="openSellers">
+  <div *ngIf="user.sellers.length>0 else noSellers">
+    <ng-container *ngTemplateOutlet="sellerHeader"></ng-container>
+    <div *ngFor="let seller of user.sellers">
+      <app-id-seller [seller]="seller"></app-id-seller>
+    </div>
+  </div>
+</div>
+
+<ng-template #sellerHeader>
+  <div class="seller-header-container">
+    <div>id</div>
+    <div>магазин</div>
+    <div>preOrd</div>
+    <div>rival</div>
+    <div>promot</div>
+    <div>demot</div>
+    <div>товары</div>
+    <div>города</div>
+    <div>точки</div>
+  </div>
+</ng-template>
+
+<ng-template #noSellers>
+  <div>
+    <div>
+      <h1>Нет еще продавцов</h1>
+    </div>
+  </div>
+</ng-template>

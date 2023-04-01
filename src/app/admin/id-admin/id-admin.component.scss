@@ -1,4 +1,17 @@
 .user-container{
   display: grid;
-  grid-template-columns: [id]1em [name]8em [email]12em [phone]10em [activated]4em;
+  grid-template-columns: [id]1em [name]14em [email]12em [phone]10em [activated]6em [action]4em;
+  padding-top: 0.2em;
+
+  button[type=submit]{
+    border: none;
+    background: none;
+  }
+}
+
+.seller-header-container{
+    display: grid;
+    grid-template-columns: 1em 12em 4em 4em 4em 4em 4em 4em 4em;
+    grid-template-rows: auto;
+    padding: 0.2em 0 0.2em 2em;
 }

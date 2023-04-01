@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IdAdminComponent } from './id-admin.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import {IdSellerModule} from "../id-seller/id-seller.module";
 
 
 
@@ -14,7 +15,8 @@ import {ReactiveFormsModule} from "@angular/forms";
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    IdSellerModule
   ]
 })
 export class IdAdminModule { }

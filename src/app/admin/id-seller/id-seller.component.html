@@ -1,0 +1,29 @@
+<form class="id-seller-container">
+  <div>
+    <div>{{seller.id}}</div>
+  </div>
+  <div>
+    <div>{{seller.username}}</div>
+  </div>
+  <div>
+    <input class="toggle-button" type="checkbox" [value]="seller.preOrderStatus"/>
+  </div>
+  <div>
+    <input class="toggle-button" type="checkbox" [value]="seller.rivalStatus"/>
+  </div>
+  <div>
+    <input class="toggle-button" type="checkbox" [value]="seller.demotion"/>
+  </div>
+  <div>
+    <input class="toggle-button" type="checkbox" [value]="seller.promotion"/>
+  </div>
+  <div>
+    <div>{{seller.count.activeCount}}</div>
+  </div>
+  <div>
+    <div>{{seller.cities.length}}</div>
+  </div>
+  <div>
+    <div>{{seller.points.length}}</div>
+  </div>
+</form>

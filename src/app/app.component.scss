@@ -1,10 +1,13 @@
 .app-header {
+  position: sticky;
+  z-index: 999;
+  top: 0;
   display: flex;
   justify-content: space-between;
   background: #3787FF;
   padding: 0.5em;
   font-size: 1.1em;
-
+  box-shadow: 0 0 16px 5px rgba(34, 60, 80, 0.2);
   a {
     text-decoration: none;
     color: beige;

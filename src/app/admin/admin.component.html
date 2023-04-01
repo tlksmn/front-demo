@@ -1,5 +1,17 @@
 <div *ngIf="request$|async as response">
+  <ng-container *ngTemplateOutlet="adminHeader"></ng-container>
   <div *ngFor="let user of response.list">
     <app-id-admin [user]="user"></app-id-admin>
   </div>
 </div>
+
+<ng-template #adminHeader>
+  <div class="admin-header-container">
+    <div>id</div>
+    <div>имя</div>
+    <div>эл. почта</div>
+    <div>телефон</div>
+    <div>активация</div>
+    <div></div>
+  </div>
+</ng-template>

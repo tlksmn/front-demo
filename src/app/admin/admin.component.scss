@@ -1,0 +1,4 @@
+.admin-header-container{
+  display: grid;
+  grid-template-columns: [id]1em [name]14em [email]12em [phone]10em [activated]6em [action]4em;
+}

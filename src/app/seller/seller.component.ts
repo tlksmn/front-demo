@@ -5,6 +5,8 @@ import {SellerResponseApiT} from "../../common/type/api/seller/seller.type";
 import {NgForm} from "@angular/forms";
 import {NotificationService} from "../../common/notification/notification.service";
 import {Router} from "@angular/router";
+import {AuthService} from "../../common/service/auth.service";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-seller',
@@ -15,6 +17,7 @@ export class SellerComponent {
   constructor(
     private readonly sellerService: SellerService,
     private readonly notificationService: NotificationService,
+    readonly authService: AuthService
   ) {}
 
   request$: Observable<SellerResponseApiT> = this.sellerService.getList()
@@ -33,5 +36,10 @@ export class SellerComponent {
         return NEVER
       })
     ).subscribe()
+  }
+
+  async copyClipboard(text:string){
+    await navigator.clipboard.writeText(text);
+    this.notificationService.success('скопировано в буфер 🔥🚀');
   }
 }
