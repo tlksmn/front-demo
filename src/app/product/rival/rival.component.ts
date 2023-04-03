@@ -1,8 +1,9 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {RivalConfigT} from "../../../common/type/base/rival.config.type";
 import {FormBuilder, FormControl, FormGroup, NgForm} from "@angular/forms";
-import {Subscription, tap} from "rxjs";
+import {catchError, NEVER, Subscription, tap} from "rxjs";
 import {ProductService} from "../../../common/service/product.service";
+import {NotificationService} from "../../../common/notification/notification.service";
 
 @Component({
   selector: 'app-rival',
@@ -19,7 +20,8 @@ export class RivalComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly productService: ProductService
+    private readonly productService: ProductService,
+    private readonly notificationService: NotificationService
   ) {
   }
 
@@ -49,8 +51,13 @@ export class RivalComponent implements OnInit, OnDestroy {
     const subscription = this.productService.updateRival({...this.rivalForm.value, id: this.rival.id})
       .pipe(
         tap((value) => {
-          Object.assign(this.rival, value)
-          this.showSaveBtn = !this.showSaveBtn
+          Object.assign(this.rival, value);
+          this.showSaveBtn = !this.showSaveBtn;
+          this.notificationService.success('Обновлено ✅')
+        }),
+        catchError((e)=> {
+          this.notificationService.error(e)
+          return NEVER
         })
       ).subscribe()
     this.subscriptions.push(subscription)

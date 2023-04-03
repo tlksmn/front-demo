@@ -1,8 +1,9 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {PointConfigT} from "../../../common/type/base/point.config.type";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {Subscription, tap} from "rxjs";
+import {catchError, NEVER, Subscription, tap} from "rxjs";
 import {ProductService} from "../../../common/service/product.service";
+import {NotificationService} from "../../../common/notification/notification.service";
 
 @Component({
   selector: 'app-config',
@@ -14,7 +15,8 @@ export class ConfigComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly productService: ProductService
+    private readonly productService: ProductService,
+    private readonly notificationService: NotificationService
   ) {
   }
 
@@ -47,6 +49,11 @@ export class ConfigComponent implements OnInit, OnDestroy {
         tap((value) => {
           Object.assign(this.configPoint, value)
           this.showSaveBtn = !this.showSaveBtn
+          this.notificationService.success('Обновлено ✅')
+        }),
+        catchError((e)=> {
+          this.notificationService.error(e)
+          return NEVER
         })
       ).subscribe()
     this.subscriptions.push(subscription)

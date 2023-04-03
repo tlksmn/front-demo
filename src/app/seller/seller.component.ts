@@ -4,9 +4,7 @@ import {SellerService} from "../../common/service/seller.service";
 import {SellerResponseApiT} from "../../common/type/api/seller/seller.type";
 import {NgForm} from "@angular/forms";
 import {NotificationService} from "../../common/notification/notification.service";
-import {Router} from "@angular/router";
 import {AuthService} from "../../common/service/auth.service";
-import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-seller',
@@ -39,7 +37,7 @@ export class SellerComponent {
   }
 
   async copyClipboard(text:string){
-    await navigator.clipboard.writeText(text);
+    await window.navigator.clipboard.writeText(text);
     this.notificationService.success('скопировано в буфер 🔥🚀');
   }
 }
