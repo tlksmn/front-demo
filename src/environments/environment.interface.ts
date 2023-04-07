@@ -1,4 +1,5 @@
 export interface EnvironmentI {
-  mode: string
-  apiUrl: string
+  mode: string;
+  apiUrl: string;
+  fileUrl: string;
 }

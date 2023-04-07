@@ -36,7 +36,7 @@ export class SellerIdComponent {
     })
   )
   async copy(type: string, sysId: string){
-    await window.navigator.clipboard.writeText(`${environment.apiUrl}product/${type}/${sysId}`);
+    await window.navigator.clipboard.writeText(`${environment.fileUrl}${type}/${sysId}`);
     this.notificationService.success('скопировано в буфер 🔥🚀')
   }
 }

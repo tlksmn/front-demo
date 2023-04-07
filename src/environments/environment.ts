@@ -2,5 +2,6 @@ import {EnvironmentI} from "./environment.interface";
 
 export const environment: EnvironmentI = {
   mode: "prod",
-  apiUrl: 'https://api.biy.kz/'
+  apiUrl: 'https://api.biy.kz/',
+  fileUrl: 'https://file.biy.kz/'
 };

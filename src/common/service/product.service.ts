@@ -11,9 +11,10 @@ export class ProductService{
   constructor(private readonly apiService: ApiService) {}
 
   getProductList(sellerId: number, page: number, take: number, filterValue: string){
-    return this.apiService.get<ProductListResponseApiT>(`product/list/seller/${sellerId}`, {
+    return this.apiService.get<ProductListResponseApiT>(`product/list/`, {
       params: {
         page,
+        sellerId,
         take,
         available: filterValue.length > 2 ? filterValue : ''
       }
@@ -21,11 +22,11 @@ export class ProductService{
   }
 
   updateRival(data:UpdateRivalConfigT){
-    return this.apiService.post<RivalConfigT, UpdateRivalConfigT>('product/update/rival', data, null)
+    return this.apiService.post<RivalConfigT, UpdateRivalConfigT>('rival-config/update', data, null)
   }
 
   updatePoint(data: UpdatePointConfigT){
-    return this.apiService.post<PointConfigT, UpdatePointConfigT>('product/update/point', data, null)
+    return this.apiService.post<PointConfigT, UpdatePointConfigT>('point-config/update', data, null)
   }
 }
 
