@@ -1,7 +1,7 @@
 <div *ngIf="request$|async as response">
   <ng-container *ngTemplateOutlet="adminHeader"></ng-container>
   <div *ngFor="let user of response.list">
-    <app-id-admin [user]="user"></app-id-admin>
+    <app-id-admin [user]="user" [password]="password"></app-id-admin>
   </div>
 </div>
 

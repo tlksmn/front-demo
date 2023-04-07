@@ -1,18 +1,27 @@
 import {Injectable} from "@angular/core";
-import {ApiService} from "./api.service";
 import {UsersListT} from "../type/api/admin/user.list.type";
 import {UpdateUserT} from "../type/api/admin/update.user.type";
 import {UserT} from "../type/base/user.type";
+import {HttpClient} from "@angular/common/http";
+import {take} from "rxjs";
+import {environment} from "../../environments/environment";
 
 @Injectable()
 export class AdminService{
-  constructor(private readonly apiService: ApiService) {}
+  constructor(private readonly httpClient: HttpClient) {}
+  private readonly adminUrl: string = environment.adminUrl;
 
-  getUserList(){
-    return this.apiService.get<UsersListT>('admin/user/list', {})
+  getUserList(password: string){
+    console.log(password);
+    return this.httpClient.get<UsersListT>(this.adminUrl+ 'list', {
+      params: {
+        pass: password
+      }
+    }).pipe(take(1))
   }
 
-  updateUser(data: UpdateUserT){
-    return this.apiService.post<UserT, UpdateUserT>('admin/update', data, {})
+  updateUser(data: UpdateUserT, password: string){
+    return this.httpClient.post<UserT>(this.adminUrl+'update', {...data, pass: password}, {})
+      .pipe(take(1))
   }
 }

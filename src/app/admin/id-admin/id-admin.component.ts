@@ -12,6 +12,7 @@ import {Subscription, tap} from "rxjs";
 })
 export class IdAdminComponent implements OnInit, OnDestroy {
   @Input('user') user!: UserT;
+  @Input('password') password: string = ''
   userForm!: FormGroup;
   subscriptions: Subscription[] = [];
   edited: boolean = false;
@@ -39,7 +40,7 @@ export class IdAdminComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    const subscription = this.adminService.updateUser({...this.userForm.value, id: this.user.id})
+    const subscription = this.adminService.updateUser({...this.userForm.value, id: this.user.id}, this.password)
       .pipe(
         tap((v) => {
           Object.assign(this.user, v)

@@ -1,4 +1,4 @@
-<form class="id-seller-container">
+<form class="id-seller-container" [formGroup]="sellerForm">
   <div>
     <div>{{seller.id}}</div>
   </div>
@@ -6,16 +6,16 @@
     <div>{{seller.username}}</div>
   </div>
   <div>
-    <input class="toggle-button" type="checkbox" [value]="seller.preOrderStatus"/>
+    <input class="toggle-button" type="checkbox" formControlName="preOrderStatus"/>
   </div>
   <div>
-    <input class="toggle-button" type="checkbox" [value]="seller.rivalStatus"/>
+    <input class="toggle-button" type="checkbox" formControlName="rivalStatus"/>
   </div>
   <div>
-    <input class="toggle-button" type="checkbox" [value]="seller.demotion"/>
+    <input class="toggle-button" type="checkbox" formControlName="demotion"/>
   </div>
   <div>
-    <input class="toggle-button" type="checkbox" [value]="seller.promotion"/>
+    <input class="toggle-button" type="checkbox" formControlName="promotion"/>
   </div>
   <div>
     <div>{{seller.count.activeCount}}</div>

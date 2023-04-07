@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IdSellerComponent } from './id-seller.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -12,7 +13,8 @@ import { IdSellerComponent } from './id-seller.component';
     IdSellerComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ]
 })
 export class IdSellerModule { }
