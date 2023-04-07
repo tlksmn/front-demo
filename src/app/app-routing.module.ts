@@ -21,7 +21,7 @@ const routes: Routes = [
   {path: 'home', redirectTo: '/'},
   {path: 'sellers', component: SellerComponent, canActivate: [AuthGuard], title: 'biy.kz | Продавцы'},
   {path: 'seller/:id/products', component: ProductComponent, canActivate: [AuthGuard], title: 'biy.kz | Товары'},
-  {path: 'admin', component: AdminComponent},
+  {path: 'etc/var/cpp/ruby/admin', component: AdminComponent},
   {path: '', component: MainComponent, title: 'Главная страница'},
   {path: '**', component: NfComponent, title: 'Ooops! Ошибка'}
 ];
