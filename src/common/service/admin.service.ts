@@ -12,7 +12,6 @@ export class AdminService{
   private readonly adminUrl: string = environment.adminUrl;
 
   getUserList(password: string){
-    console.log(password);
     return this.httpClient.get<UsersListT>(this.adminUrl+ 'list', {
       params: {
         pass: password

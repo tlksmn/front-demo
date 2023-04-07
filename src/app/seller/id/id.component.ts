@@ -53,7 +53,6 @@ export class IdComponent implements OnInit, OnDestroy {
   }
 
   async switchToSeller() {
-    console.log(this.seller)
     await this.router.navigate(['seller', this.seller.id, 'products']);
   }
 

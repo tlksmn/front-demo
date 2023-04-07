@@ -25,7 +25,6 @@ export class ProductComponent {
     private readonly productService: ProductService,
     private readonly route: ActivatedRoute,
     private readonly notificationService: NotificationService,
-    private readonly sellerService: SellerService,
   ) {
   }
 
