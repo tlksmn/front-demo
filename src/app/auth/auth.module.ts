@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule} from "@angular/forms";
-import {MessageService} from "primeng/api";
 import { PasswordModule } from 'primeng/password';
 import { InputMaskModule } from 'primeng/inputmask';
 
@@ -23,6 +22,6 @@ import {ButtonModule} from "primeng/button";
     InputTextModule,
     ButtonModule
   ],
-  providers: [MessageService]
+  providers: []
 })
 export class AuthModule { }
