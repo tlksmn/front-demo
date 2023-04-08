@@ -17,6 +17,9 @@ export class RivalComponent implements OnInit, OnDestroy {
   rivalForm!: FormGroup;
   opened: boolean = false;
   showSaveBtn: boolean = false;
+  minPriceEdited: boolean = false;
+  priceEdited: boolean = false;
+
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -61,5 +64,11 @@ export class RivalComponent implements OnInit, OnDestroy {
         })
       ).subscribe()
     this.subscriptions.push(subscription)
+  }
+  editMinPrice(){
+    this.minPriceEdited = true
+  }
+  editPrice(){
+    this.priceEdited = true
   }
 }

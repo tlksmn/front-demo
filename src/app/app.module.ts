@@ -1,5 +1,9 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { ToastModule } from 'primeng/toast';
+import {MessagesModule} from "primeng/messages";
+
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -13,7 +17,10 @@ import {AuthGuard} from "../common/guard/auth.guard";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NotificationModule
+    NotificationModule,
+    BrowserAnimationsModule,
+    ToastModule,
+    MessagesModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

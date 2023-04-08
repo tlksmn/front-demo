@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from "../common/service/auth.service";
-import {NotificationService} from "../common/notification/notification.service";
 import {Router} from "@angular/router";
 import {catchError, NEVER, tap} from "rxjs";
+import {MessageService} from "primeng/api";
+
 import {UserT} from "../common/type/base/user.type";
+import {AuthService} from "../common/service/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -13,19 +14,23 @@ import {UserT} from "../common/type/base/user.type";
 export class AppComponent implements OnInit {
   constructor(
     readonly authService: AuthService,
-    private readonly notificationService: NotificationService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly messageService: MessageService
   ) {
   }
 
   ngOnInit() {
     const subscription = this.authService.me().pipe(
       catchError(err => {
-        this.notificationService.error('Войдите в систему чтобы продолжить')
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Авторизация',
+          detail: 'Войдите в систему чтобы продолжить'
+        })
         return NEVER
       }),
       tap((user: UserT) => {
-        this.notificationService.success('успешно вошли в систему')
+        this.messageService.add({severity: 'success', summary: 'Авторизация', detail: 'Успешно вошли в систему'})
       }),
     ).subscribe()
     setTimeout(() => subscription.unsubscribe(), 5000)
@@ -34,10 +39,16 @@ export class AppComponent implements OnInit {
 
   logout() {
     const subscription = this.authService.signOut().pipe(
-      tap(() => this.notificationService.success('выход выполнен успешно')),
+      tap(() => {
+        this.messageService.add({severity: 'success', summary: 'Авторизация', detail: 'Выход выполнен успешно'})
+      }),
       tap(() => this.router.navigate(['/auth'])),
       catchError((err) => {
-        this.notificationService.error(err.message)
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Авторизация',
+          detail: err.message
+        })
         return NEVER
       }),
     ).subscribe()

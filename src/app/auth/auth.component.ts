@@ -1,8 +1,9 @@
 import {Component, OnDestroy} from '@angular/core';
 import {catchError, NEVER, Subscription, tap} from "rxjs";
-import {NotificationService} from "../../common/notification/notification.service";
 import {NgForm} from "@angular/forms";
 import {Router} from "@angular/router";
+import {MessageService} from "primeng/api";
+
 import {AuthService} from "../../common/service/auth.service";
 import {SignInT} from "../../common/type/api/auth/auth.type";
 
@@ -14,8 +15,8 @@ import {SignInT} from "../../common/type/api/auth/auth.type";
 export class AuthComponent implements OnDestroy{
   constructor(
     readonly authService: AuthService,
-    private readonly notificationService: NotificationService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly messageService: MessageService
   ) {
   }
   ngOnDestroy() {
@@ -35,7 +36,7 @@ export class AuthComponent implements OnDestroy{
   onSignIn(form: NgForm) {
     const subscription = this.authService.signIn(form.value as SignInT).pipe(
       catchError((e) => {
-        this.notificationService.error(e.error.message)
+        this.messageService.add({severity: 'error', summary: 'Авторизация', detail: e.error.message})
         return NEVER
       }),
       tap(() => {
@@ -49,11 +50,13 @@ export class AuthComponent implements OnDestroy{
   onSignUp(form: NgForm) {
     const subscription = this.authService.signUp(form.value).pipe(
       catchError((err) => {
-        this.notificationService.error(err.error.message)
+        this.messageService.add({severity: 'error', summary: 'Авторизация', detail: err.error.message})
         return NEVER
       }),
       tap((v) => {
-        this.notificationService.success('user created!')
+        this.messageService.add({severity: 'success', summary: 'Авторизация', detail: 'Аккаунт создан!)'})
+        this.messageService.add({severity: 'info', summary: 'Авторизация', detail: 'Зайдите в аккаунт чтобы продолжить*'})
+        setTimeout(()=> {this.loginMode = true}, 700)
       })
     ).subscribe()
     this.subscriptions$.push(subscription)
@@ -63,11 +66,11 @@ export class AuthComponent implements OnDestroy{
   getMe() {
     const subscription = this.authService.me().pipe(
       catchError((e) => {
-        this.notificationService.error(e.message)
+        this.messageService.add({severity: 'error', summary: 'Авторизация', detail: e.message})
         return NEVER
       }),
       tap(async (value) => {
-        this.notificationService.success(`Вход выполнен успешно`);
+        this.messageService.add({severity: 'success', summary: 'Авторизация', detail: 'Вход выполнен успешно 🔥🔥'})
         await this.router.navigate(['/sellers']);
       })
     ).subscribe()

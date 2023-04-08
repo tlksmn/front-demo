@@ -1,37 +1,12 @@
 .auth-container {
   form {
     display: flex;
-    justify-content: center;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    input {
-      border: none;
-      padding: 0.4em;
-      background: #f9fcff;
-      border-radius: 0.2em;
-      border-bottom: 0.1px #d7d7d7 solid;
-    }
-    .btn{
-      border: 0.1px solid silver;
-      border-radius: 0.2em;
-      padding: 0.3em;
-      background: #3787FF;
-      color: #f7faff;
-      &-primary {
-        background: #3787FF;
-        color: #f7faff;
-      }
-      &-secondary {
-        background: #12d200;
-        color: #f7faff;
-      }
-      &:disabled{
-        background: #ababab;
-        color: white;
-      }
-    }
-    & > * {
-      margin: 0.4em;
+    gap: 1.4em;
+    span input{
+      width: 14em;
     }
   }
 }

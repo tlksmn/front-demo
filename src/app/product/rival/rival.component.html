@@ -1,14 +1,19 @@
-<form action="" [formGroup]="rivalForm" [class]="opened ? 'rival-container open': 'rival-container'" (ngSubmit)="submitForm()">
+<form action="" [formGroup]="rivalForm" [class]="opened ? 'rival-container open': 'rival-container'"
+      (ngSubmit)="submitForm()">
   <div (click)="switchRivals(!opened)">{{rival.city.name}}</div>
   <div>n место</div>
-  <div class="group-currency">
-    <label for="minPrice">₸</label>
-    <input type="number" step="100" formControlName="price" id="minPrice" min="1">
-  </div>
-  <div class="group-currency">
-    <label for="price">₸</label>
-    <input type="number" step="100" formControlName="minPrice" id="price" min="0">
-  </div>
+  <ng-container *ngIf="priceEdited else priceViewContainer">
+    <div class="group-currency">
+      <label for="minPrice">₸</label>
+      <input type="number" step="100" formControlName="price" id="minPrice" min="1">
+    </div>
+  </ng-container>
+  <ng-container *ngIf="minPriceEdited else minPriceViewContainer">
+    <div class="group-currency">
+      <label for="price">₸</label>
+      <input type="number" step="100" formControlName="minPrice" id="price" min="0">
+    </div>
+  </ng-container>
   <div>
     <button type="submit" *ngIf="showSaveBtn && rivalForm.valid">✅</button>
   </div>
@@ -29,4 +34,12 @@
     <div>Наличие</div>
     <div>Предзаказ</div>
   </div>
+</ng-template>
+
+<ng-template #minPriceViewContainer>
+  <div (click)="editMinPrice()">{{rival.minPrice|currency:'₸'}}</div>
+</ng-template>
+
+<ng-template #priceViewContainer>
+  <div (click)="editPrice()">{{rival.price|currency:'₸'}}</div>
 </ng-template>
