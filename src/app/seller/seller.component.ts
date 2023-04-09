@@ -1,23 +1,34 @@
-import {BehaviorSubject, catchError, NEVER, Observable, tap} from "rxjs";
-import {Component} from '@angular/core';
+import {BehaviorSubject, catchError, NEVER, Observable, Subscription, tap} from "rxjs";
+import {Component, OnDestroy} from '@angular/core';
 import {SellerService} from "../../common/service/seller.service";
 import {SellerResponseApiT} from "../../common/type/api/seller/seller.type";
 import {NgForm} from "@angular/forms";
 import {NotificationService} from "../../common/notification/notification.service";
 import {AuthService} from "../../common/service/auth.service";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-seller',
   templateUrl: './seller.component.html',
   styleUrls: ['./seller.component.scss']
 })
-export class SellerComponent {
+export class SellerComponent implements OnDestroy {
   constructor(
     private readonly sellerService: SellerService,
     private readonly notificationService: NotificationService,
-    readonly authService: AuthService
-  ) {}
+    readonly authService: AuthService,
+    private readonly messageService: MessageService
+  ) {
+  }
 
+  ngOnDestroy() {
+    this.subscriptions.forEach((e) => {
+      e.unsubscribe()
+    })
+    this.subscriptions = []
+  }
+
+  private subscriptions: Subscription[] = []
   request$: Observable<SellerResponseApiT> = this.sellerService.getList()
   addModeStream: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
 
@@ -26,18 +37,33 @@ export class SellerComponent {
   }
 
   addSeller(form: NgForm) {
-    //-todo unsubscribe
-    return this.sellerService.addSeller(form.value).pipe(
-      tap((value) => this.notificationService.success('Подождите идёт инициализация')),
+    const subscription = this.sellerService.addSeller(form.value).pipe(
+      tap((value) => {
+        this.messageService.add({severity: 'success', summary: 'Добавление магазина', detail: 'Успешно добавлено.'})
+        this.messageService.add({severity: 'warn', summary: 'Добавление магазина', detail: 'Подождите 1-2 минуты. \nВсе зависит от количества товаров и точек продаж.'})
+      }),
       catchError((e) => {
-        this.notificationService.error('Неправильный пароль или логин. Повторите позже');
+        this.messageService.add({severity: 'error', summary: 'Добавление магазина', detail: e.error.message})
+        if(e.error.statusCode!==406)
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Авторизация',
+            detail: 'Неправильный пароль или логин. Повторите позже'
+          })
+        else
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Авторизация',
+            detail: 'Такой магазин уже добавлен ранее, пожалуйста обратитесь к администратору'
+          })
         return NEVER
       })
     ).subscribe()
+    this.subscriptions.push(subscription)
   }
 
-  async copyClipboard(text:string){
+  async copyClipboard(text: string) {
     await window.navigator.clipboard.writeText(text);
-    this.notificationService.success('скопировано в буфер 🔥🚀');
+    this.messageService.add({severity: 'success', summary: 'Буфер обмена', detail: 'Скопировано в буфер 🔥🚀'})
   }
 }

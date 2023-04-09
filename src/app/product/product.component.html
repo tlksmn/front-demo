@@ -7,7 +7,7 @@
     <ng-container *ngIf="currentPageStream|async as currentPage">
       <div *ngIf="perPageStream|async as perPage" class="pagination-container">
         <div *ngIf="filterStream|async as filter" class="pagination-elements">
-          <div class="btn" (click)="onCurrentPageUpdate(currentPage-1)">предыдущая страница</div>
+          <button pButton class="p-button-sm p-button-outlined p-button-warning" (click)="onCurrentPageUpdate(currentPage-1)">предыдущая страница</button>
           <div class="page">страница: {{currentPage}}</div>
           <div>
             <label for="perPage">по </label>
@@ -16,6 +16,7 @@
                       [value]="dPerPage">{{dPerPage}}</option>
             </select>
             <label for="perPage"> товаров</label>
+<!--            <p-dropdown class="p-dropdown-sm" [options]="defaultPerPage"></p-dropdown>-->
           </div>
           <div>
             <label for="filterSelect">фильтр </label>
@@ -23,8 +24,9 @@
               <option *ngFor="let dFilter of defaultFilter; let i=index" [selected]="dFilter===filter"
                       [value]="dFilter">{{defaultFilterString[i]}}</option>
             </select>
+<!--            <p-dropdown class="p-dropdown-sm" [options]="defaultFilterString"></p-dropdown>-->
           </div>
-          <div class="btn" (click)="onCurrentPageUpdate(currentPage+1)">следующая страница</div>
+          <button pButton class="p-button-sm p-button-outlined p-button-warning" (click)="onCurrentPageUpdate(currentPage+1)">следующая страница</button>
         </div>
       </div>
     </ng-container>

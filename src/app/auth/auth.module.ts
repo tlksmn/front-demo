@@ -20,7 +20,7 @@ import {ButtonModule} from "primeng/button";
     PasswordModule,
     InputMaskModule,
     InputTextModule,
-    ButtonModule
+    ButtonModule,
   ],
   providers: []
 })

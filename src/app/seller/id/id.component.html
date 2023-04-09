@@ -1,23 +1,20 @@
 <form class="seller-id-container" [formGroup]="sellerForm" (ngSubmit)="submitForm()">
   <div (click)="switchToSeller()">{{seller.username}}</div>
   <div>
-    <input type="checkbox" name="preOrderStatus"
-           formControlName="preOrderStatus" class="toggle-button"/>
+    <p-inputSwitch name="rivalStatus" formControlName="rivalStatus"/>
   </div>
   <div>
-    <input type="checkbox" name="rivalStatus" formControlName="rivalStatus"
-           class="toggle-button"/>
+    <p-inputSwitch name="preOrderStatus" formControlName="preOrderStatus"/>
   </div>
   <div>
-    <input type="checkbox" name="promotion" formControlName="promotion"
-           class="toggle-button"/>
+    <p-inputSwitch name="promotion" formControlName="promotion"/>
   </div>
   <div>
-    <input type="checkbox" name="demotion" formControlName="demotion"
-           class="toggle-button"/>
+    <p-inputSwitch name="demotion" formControlName="demotion"
+    />
   </div>
   <div>
-    <button *ngIf="edited && sellerForm.valid" type="submit">✅</button>
-    <button disabled *ngIf="!authService.user.activated">❌</button>
+    <button pButton icon="pi pi-check" class="p-button-sm p-button-success p-button-rounded p-button-text p-button-raised" *ngIf="edited && sellerForm.valid" type="submit"></button>
+    <button pButton icon="pi pi-times" class="p-button-small p-button-rounded p-button-raised p-button-danger p-button-text" disabled *ngIf="!authService.user.activated"></button>
   </div>
 </form>

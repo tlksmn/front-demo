@@ -7,8 +7,8 @@
   </div>
 
   <div class="file-info">
-    <div (click)="copy('xml', seller.sysId)">xml</div>
-    <div (click)="copy('xlsx', seller.sysId)">xlsx</div>
+    <button pButton pRipple label="xml" class="p-button-sm p-button-text" icon="pi pi-file-import" (click)="copy('xml', seller.sysId)"></button>
+    <button pButton pRipple label="xlsx" class="p-button-sm p-button-text" icon="pi pi-file-excel" (click)="copy('xlsx', seller.sysId)"></button>
   </div>
 
   <div class="config-info">

@@ -2,16 +2,20 @@
 <div class="app-header">
   <ng-container *ngIf="(authService.status | async) else notAuthorizedUser">
     <div class="header">
-      <a routerLink="/">Домой</a>
-      <a routerLink="sellers">Продавцы</a>
+      <div class="action">
+        <a routerLink="/">Главная</a>
+      </div>
+      <div class="action">
+        <a routerLink="sellers">Продавцы</a>
+      </div>
     </div>
-    <div class="action">
+    <div class="action logout">
       <a (click)="logout()">Выйти</a>
     </div>
   </ng-container>
   <ng-template #notAuthorizedUser>
     <div class="action">
-      <a routerLink="/auth">Войти</a>
+      <a routerLink="/auth">Авторизация</a>
     </div>
   </ng-template>
 </div>

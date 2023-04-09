@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {
   BehaviorSubject,
   catchError,
@@ -6,26 +6,31 @@ import {
   debounceTime,
   map,
   NEVER,
-  Observable, Subject,
+  Observable,
   switchMap,
   throwError
 } from "rxjs";
-import {ActivatedRoute} from "@angular/router";
-import {NotificationService} from "../../common/notification/notification.service";
-import {SellerService} from "../../common/service/seller.service";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ProductListResponseApiT, ProductService} from "../../common/service/product.service";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
-export class ProductComponent {
+export class ProductComponent implements OnDestroy {
   constructor(
     private readonly productService: ProductService,
     private readonly route: ActivatedRoute,
-    private readonly notificationService: NotificationService,
-  ) {
+    private readonly messageService: MessageService,
+    private readonly router: Router
+  ) {}
+
+  ngOnDestroy() {
+    this.currentPageStream.unsubscribe()
+    this.perPageStream.unsubscribe()
+    this.filterStream.unsubscribe()
   }
 
   defaultPerPage: number[] = [10, 25, 50, 75, 100];
@@ -43,14 +48,15 @@ export class ProductComponent {
     this.filterStream
   ).pipe(
     debounceTime(1400),
-    switchMap(([currentPage, perPage, sellerId,filterValue]) => {
+    switchMap(([currentPage, perPage, sellerId, filterValue]) => {
       if (isNaN(sellerId)) {
         return throwError('Продавец не найден')
       }
       return this.productService.getProductList(sellerId, currentPage, perPage, filterValue)
     }),
-    catchError(e => {
-      this.notificationService.error(e)
+    catchError((e) => {
+      this.messageService.add({detail: e.error.message, summary: e.error.statusCode, severity: 'error'})
+      this.router.navigate(['sellers']).then()
       return NEVER
     })
   );
@@ -65,7 +71,7 @@ export class ProductComponent {
     return this.perPageStream.next(perPage);
   }
 
-  onFilterUpdate(status: string){
+  onFilterUpdate(status: string) {
     this.filterStream.next(status)
   }
 }

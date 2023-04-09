@@ -5,6 +5,7 @@ import {SellerT} from "../../../common/type/base/seller.type";
 import {Subscription, tap} from "rxjs";
 import {SellerService} from "../../../common/service/seller.service";
 import {AuthService} from "../../../common/service/auth.service";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-id',
@@ -21,7 +22,8 @@ export class IdComponent implements OnInit, OnDestroy {
     private readonly formBuilder: FormBuilder,
     private readonly router: Router,
     private readonly sellerService: SellerService,
-    readonly authService: AuthService
+    readonly authService: AuthService,
+    private readonly messageService: MessageService
   ) {
   }
 
@@ -59,6 +61,7 @@ export class IdComponent implements OnInit, OnDestroy {
   submitForm() {
     const subscription = this.sellerService.updateSeller({...this.sellerForm.value, id: this.seller.id}).pipe(
       tap((seller) => {
+        this.messageService.add({severity: 'success', summary: 'Продавец', detail: 'Успешно обновлено!'})
         Object.assign(this.seller, seller)
         this.edited = false;
       })

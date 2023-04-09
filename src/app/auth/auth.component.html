@@ -3,13 +3,13 @@
     <h1>Вход в личный кабинет</h1>
     <span class="p-float-label">
       <input pInputText type="email" name="email" autocomplete="off" id="email" placeholder="e1@mail.kz" required ngModel pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
-      <label for="email">почта</label>
+      <label for="email">Электронная почта</label>
     </span>
     <span class="p-float-label">
         <p-password [toggleMask]="true" type="password" name="password" id="password" placeholder="*Пароль1@" required ngModel/>
-        <label for="password">пароль</label>
+        <label for="password">Пароль</label>
     </span>
-    <button pButton type="submit" [disabled]="signIn.invalid" (click)="onSignIn(signIn)">
+    <button pButton type="submit" class="p-button-sm" [disabled]="signIn.invalid" (click)="onSignIn(signIn)">
       Войти
     </button>
   </form>
@@ -18,21 +18,21 @@
     <h1>Зарегистрироваться</h1>
     <span class="p-float-label" style="width: 14em">
       <p-inputMask type="tel" name="phone" autocomplete="off" mask="999-999-9999" id="phoneNumber" placeholder="705-890-2548" ngModel/>
-      <label for="phoneNumber">телефон</label>
+      <label for="phoneNumber">Телефон</label>
     </span>
     <span class="p-float-label">
       <input pInputText type="text" name="name" autocomplete="off" id="name" placeholder="Батыр Адилет" required ngModel>
-      <label for="name">имя фамилия</label>
+      <label for="name">Имя фамилия</label>
     </span>
     <span class="p-float-label">
       <input pInputText type="email" name="email" autocomplete="off" id="email_reg" placeholder="e1@mail.kz" required ngModel pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
-      <label for="email_reg">почта</label>
+      <label for="email_reg">Электронная почта</label>
     </span>
     <span class="p-float-label">
         <p-password [toggleMask]="true" type="password" name="password" id="password_reg" placeholder="*Пароль2@" required ngModel/>
-        <label for="password_reg">пароль</label>
+        <label for="password_reg">Пароль</label>
     </span>
-    <button pButton class="p-button-success" type="submit" [disabled]="signUp.invalid" (click)="onSignUp(signUp)">
+    <button pButton class="p-button-success p-button-sm" type="submit" [disabled]="signUp.invalid" (click)="onSignUp(signUp)">
       Зарегистрироваться
     </button>
   </form>
