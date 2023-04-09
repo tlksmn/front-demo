@@ -38,6 +38,6 @@ export class SellerIdComponent {
   )
   async copy(type: string, sysId: string){
     await window.navigator.clipboard.writeText(`${environment.fileUrl}${type}/${sysId}`);
-    this.messageService.add({detail: 'Ссылка скопировано в буфер.', summary: 'Буфер обмена', severity: 'success'})
+    this.messageService.add({detail: 'Ссылка скопирована в буфер обмена', summary: 'Буфер обмена', severity: 'success'})
   }
 }

@@ -1,18 +1,19 @@
-<div class="seller-add-controller">
-  <ng-container *ngTemplateOutlet="addSelectFormTemplate"/>
-</div>
+
 
 <div class="seller-list-container">
   <div *ngIf="request$|async as response">
+    <div class="activation-container" *ngIf="authService.user.activated">
+      <div>код для chrome extension Standard Biy</div>
+      <div (click)="copyClipboard(authService.user.hash!)" class="code">{{authService.user.hash}}</div>
+    </div>
     <div *ngIf="response.total>0 else noContent">
       <ng-container *ngTemplateOutlet="sellerHeader"></ng-container>
       <div *ngFor="let seller of response.list">
         <app-id [seller]="seller"></app-id>
       </div>
     </div>
-    <div class="activation-container" *ngIf="authService.user.activated">
-      <div>код для chrome extension Standard Biy</div>
-      <div (click)="copyClipboard(authService.user.hash!)" class="code">{{authService.user.hash}}</div>
+    <div class="seller-add-controller">
+      <ng-container *ngTemplateOutlet="addSelectFormTemplate"/>
     </div>
   </div>
 </div>

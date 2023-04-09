@@ -12,22 +12,22 @@ import {SignInT} from "../../common/type/api/auth/auth.type";
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })
-export class AuthComponent implements OnDestroy{
+export class AuthComponent implements OnDestroy {
+  subscriptions$: Subscription[] = [];
+  loginMode = true;
+
   constructor(
     readonly authService: AuthService,
     private readonly router: Router,
     private readonly messageService: MessageService
-  ) {
-  }
+  ) {}
+
   ngOnDestroy() {
-    this.subscriptions$.forEach((e)=> {
+    this.subscriptions$.forEach((e) => {
       e.unsubscribe()
     })
     this.subscriptions$ = [];
   }
-  subscriptions$: Subscription[] = [];
-
-  loginMode = true
 
   modeChange() {
     this.loginMode = !this.loginMode
@@ -55,8 +55,14 @@ export class AuthComponent implements OnDestroy{
       }),
       tap((v) => {
         this.messageService.add({severity: 'success', summary: 'Авторизация', detail: 'Аккаунт создан!)'})
-        this.messageService.add({severity: 'info', summary: 'Авторизация', detail: 'Зайдите в аккаунт чтобы продолжить*'})
-        setTimeout(()=> {this.loginMode = true}, 700)
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Авторизация',
+          detail: 'Зайдите в аккаунт чтобы продолжить*'
+        })
+        setTimeout(() => {
+          this.loginMode = true
+        }, 700)
       })
     ).subscribe()
     this.subscriptions$.push(subscription)

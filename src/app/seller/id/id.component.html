@@ -14,7 +14,7 @@
     />
   </div>
   <div>
-    <button pButton icon="pi pi-check" class="p-button-sm p-button-success p-button-rounded p-button-text p-button-raised" *ngIf="edited && sellerForm.valid" type="submit"></button>
-    <button pButton icon="pi pi-times" class="p-button-small p-button-rounded p-button-raised p-button-danger p-button-text" disabled *ngIf="!authService.user.activated"></button>
+    <button pButton icon="pi pi-check" class="p-button-sm p-button-success p-button-rounded p-button-text" *ngIf="edited && sellerForm.valid" type="submit"></button>
+    <button pButton icon="pi pi-times" class="p-button-small p-button-rounded p-button-danger p-button-text" disabled *ngIf="!authService.user.activated"></button>
   </div>
 </form>

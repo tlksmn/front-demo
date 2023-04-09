@@ -1,9 +1,10 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {RivalConfigT} from "../../../common/type/base/rival.config.type";
-import {FormBuilder, FormControl, FormGroup, NgForm} from "@angular/forms";
+import {MessageService} from "primeng/api";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {catchError, NEVER, Subscription, tap} from "rxjs";
+
+import {RivalConfigT} from "../../../common/type/base/rival.config.type";
 import {ProductService} from "../../../common/service/product.service";
-import {NotificationService} from "../../../common/notification/notification.service";
 
 @Component({
   selector: 'app-rival',
@@ -24,7 +25,7 @@ export class RivalComponent implements OnInit, OnDestroy {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly productService: ProductService,
-    private readonly notificationService: NotificationService
+    private readonly messageService: MessageService
   ) {
   }
 
@@ -56,10 +57,10 @@ export class RivalComponent implements OnInit, OnDestroy {
         tap((value) => {
           Object.assign(this.rival, value);
           this.showSaveBtn = !this.showSaveBtn;
-          this.notificationService.success('Обновлено ✅')
+          this.messageService.add({summary:'Обновление цены товара' , detail: 'Данные обновлены', severity: 'success'})
         }),
         catchError((e)=> {
-          this.notificationService.error(e)
+          this.messageService.add({summary: 'Ошибка сервера', detail: e.error.message, severity: 'error'})
           return NEVER
         })
       ).subscribe()
