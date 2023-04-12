@@ -20,6 +20,7 @@ export class RivalComponent implements OnInit, OnDestroy {
   showSaveBtn: boolean = false;
   minPriceEdited: boolean = false;
   priceEdited: boolean = false;
+  modalOpened: boolean = false;
 
 
   constructor(
@@ -36,8 +37,8 @@ export class RivalComponent implements OnInit, OnDestroy {
     })
     const subscription = this.rivalForm.valueChanges.pipe(tap(() => {
       this.showSaveBtn = true;
-    })).subscribe()
-    this.subscriptions.push(subscription)
+    })).subscribe();
+    this.subscriptions.push(subscription);
   }
 
   ngOnDestroy() {
@@ -48,7 +49,7 @@ export class RivalComponent implements OnInit, OnDestroy {
   }
 
   switchRivals(value: boolean) {
-    this.opened = value
+    this.opened = value;
   }
 
   submitForm() {
@@ -63,13 +64,16 @@ export class RivalComponent implements OnInit, OnDestroy {
           this.messageService.add({summary: 'Ошибка сервера', detail: e.error.message, severity: 'error'})
           return NEVER
         })
-      ).subscribe()
-    this.subscriptions.push(subscription)
+      ).subscribe();
+    this.subscriptions.push(subscription);
   }
   editMinPrice(){
-    this.minPriceEdited = true
+    this.minPriceEdited = true;
   }
   editPrice(){
-    this.priceEdited = true
+    this.priceEdited = true;
+  }
+  showModal(){
+    this.modalOpened = true;
   }
 }
