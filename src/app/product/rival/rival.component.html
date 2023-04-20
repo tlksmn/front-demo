@@ -2,9 +2,13 @@
       (ngSubmit)="submitForm()">
   <div (click)="switchRivals(!opened)">{{rival.city.name}}</div>
   <div>
-    <div><div (click)="showModal()">$ место</div></div>
-    <p-dialog header="Продавцы" [resizable]="true" [modal]="true" [maximizable]="true" appendTo="body" [(visible)]="modalOpened" [style]="{width: '75vw'}" [contentStyle]="{height: '300px'}">
-      <p-table [value]="rival.rivalSeller.offers" [scrollable]="true" scrollHeight="flex" [tableStyle]="{'min-width': '50rem'}">
+    <div>
+      <div (click)="showModal()">$ место</div>
+    </div>
+    <p-dialog header="Продавцы" [resizable]="true" [modal]="true" [maximizable]="true" appendTo="body"
+              [(visible)]="modalOpened" [style]="{width: '75vw'}" [contentStyle]="{height: '500px'}">
+      <p-table [value]="rival.rivalSeller.offers" [scrollable]="true" scrollHeight="flex"
+               [tableStyle]="{'min-width': '50rem'}">
         <ng-template pTemplate="header">
           <tr>
             <th>Магазин</th>
@@ -18,14 +22,16 @@
           <tr>
             <td>{{offer.merchantName}}</td>
             <td>{{offer.locatedInCity || offer.kdDestinationCity}}</td>
-            <td>{{offer.price}}</td>
+            <td>{{offer.price|currency: '₸'}}</td>
             <td>{{offer.preorder}}</td>
             <td>{{offer.merchantRating}}</td>
           </tr>
         </ng-template>
       </p-table>
       <ng-template pTemplate="footer">
-        <button type="button" pButton pRipple icon="pi pi-times" (click)="modalOpened=false" label="Закрыть" class="p-button-text"></button>
+        <div>{{rival.updated|date:'d MMMM HH:m:S':'+0600':'ru'}}</div>
+        <button type="button" pButton pRipple icon="pi pi-times" (click)="modalOpened=false" label="Закрыть"
+                class="p-button-text"></button>
       </ng-template>
     </p-dialog>
   </div>
