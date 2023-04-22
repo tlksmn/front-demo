@@ -1,6 +1,6 @@
 .rival-container{
   display: grid;
-  grid-template-columns: [city]8em [rivals]6em [price]6em [minPice]6em  [action]4em;
+  grid-template-columns: [city]8em [rivals]6em [price]6em [minPice]6em [oldPrice]6em [action]4em;
   grid-template-rows: auto;
   align-items: center;
   width: auto;

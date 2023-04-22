@@ -35,7 +35,7 @@
         </ng-template>
       </p-table>
       <ng-template pTemplate="footer">
-        <div>{{rival.updated|date:'d MMMM HH:m:S':'+0600':'ru'}}</div>
+        <div>{{rival.updated|date:'d MMMM HH:mm:ss':'+0600':'ru'}}</div>
         <button type="button" pButton pRipple icon="pi pi-times" (click)="modalOpened=false" label="Закрыть"
                 class="p-button-text"></button>
       </ng-template>
@@ -53,6 +53,9 @@
       <input type="number" step="100" formControlName="minPrice" id="price" min="0">
     </div>
   </ng-container>
+  <div>
+    {{rival.oldPrice|currency:'₸'}}
+  </div>
   <div>
     <button type="submit" *ngIf="showSaveBtn && rivalForm.valid">✅</button>
   </div>

@@ -8,6 +8,7 @@ import {PriceListApiT} from "../api/product/product.sellers.type";
 export type RivalConfigT = AT & {
   price: number;
   minPrice: number;
+  oldPrice: number;
   rivalSeller: PriceListApiT;
   pointConfigs: PointConfigT[];
   seller: SellerT;
