@@ -2,11 +2,13 @@
       (ngSubmit)="submitForm()">
   <div (click)="switchRivals(!opened)">{{rival.city.name}}</div>
   <div>
-    <div>
-      <div (click)="showModal()">$ место</div>
+    <div *ngIf="seller$|async as seller">
+      <div (click)="showModal()" *ngIf="getPosition(seller.sysId) as position"
+           [style.color]="position > 0 ? 'green':''">{{position > 0 ? position : '#'}} место
+      </div>
     </div>
     <p-dialog header="Продавцы" [resizable]="true" [modal]="true" [maximizable]="true" appendTo="body"
-              [(visible)]="modalOpened" [style]="{width: '75vw'}" [contentStyle]="{height: '500px'}">
+              [(visible)]="modalOpened" [style]="{width: '75vw'}" [contentStyle]="{height: '60vh'}">
       <p-table [value]="rival.rivalSeller.offers" [scrollable]="true" scrollHeight="flex"
                [tableStyle]="{'min-width': '50rem'}">
         <ng-template pTemplate="header">
@@ -20,12 +22,16 @@
         </ng-template>
         <ng-template pTemplate="body" let-offer>
           <tr>
-            <td>{{offer.merchantName}}</td>
-            <td>{{offer.locatedInCity || offer.kdDestinationCity}}</td>
+            <td *ngIf="seller$|async as seller else err"
+                [style.color]="seller?.sysId === offer?.merchantId ? 'green': ''">{{offer.merchantName}}</td>
+            <td>{{getCityName(offer.locatedInCity || offer.kdDestinationCity || '')}}</td>
             <td>{{offer.price|currency: '₸'}}</td>
             <td>{{offer.preorder}}</td>
             <td>{{offer.merchantRating}}</td>
           </tr>
+          <ng-template #err>
+            <td>{{offer.merchantName}}?</td>
+          </ng-template>
         </ng-template>
       </p-table>
       <ng-template pTemplate="footer">
