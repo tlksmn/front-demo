@@ -1,12 +1,15 @@
-<div class="auth-container">
+
+<p-card class="auth-container" header="Авторизация" [style]="{'min-width': '320px', 'margin-top': '8em'}">
   <form *ngIf="loginMode" #signIn="ngForm">
     <h1>Вход в личный кабинет</h1>
     <span class="p-float-label">
-      <input pInputText type="email" name="email" autocomplete="off" id="email" placeholder="e1@mail.kz" required ngModel pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+      <input pInputText type="email" name="email" autocomplete="off" id="email" placeholder="e1@mail.kz" required
+             ngModel pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
       <label for="email">Электронная почта</label>
     </span>
     <span class="p-float-label">
-        <p-password [toggleMask]="true" type="password" name="password" id="password" placeholder="*Пароль1@" required ngModel/>
+        <p-password [toggleMask]="true" type="password" name="password" id="password" placeholder="*Пароль1@" required
+                    ngModel/>
         <label for="password">Пароль</label>
     </span>
     <button pButton type="submit" class="p-button-sm" [disabled]="signIn.invalid" (click)="onSignIn(signIn)">
@@ -17,26 +20,31 @@
   <form *ngIf="!loginMode" #signUp="ngForm">
     <h1>Зарегистрироваться</h1>
     <span class="p-float-label" style="width: 14em">
-      <p-inputMask type="tel" name="phone" autocomplete="off" mask="999-999-9999" id="phoneNumber" placeholder="705-890-2548" ngModel/>
+      <p-inputMask type="tel" name="phone" autocomplete="off" mask="999-999-9999" id="phoneNumber"
+                   placeholder="705-890-2548" ngModel/>
       <label for="phoneNumber">Телефон</label>
     </span>
     <span class="p-float-label">
-      <input pInputText type="text" name="name" autocomplete="off" id="name" placeholder="Батыр Адилет" required ngModel>
+      <input pInputText type="text" name="name" autocomplete="off" id="name" placeholder="Батыр Адилет" required
+             ngModel>
       <label for="name">Имя фамилия</label>
     </span>
     <span class="p-float-label">
-      <input pInputText type="email" name="email" autocomplete="off" id="email_reg" placeholder="e1@mail.kz" required ngModel pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+      <input pInputText type="email" name="email" autocomplete="off" id="email_reg" placeholder="e1@mail.kz" required
+             ngModel pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
       <label for="email_reg">Электронная почта</label>
     </span>
     <span class="p-float-label">
-        <p-password [toggleMask]="true" type="password" name="password" id="password_reg" placeholder="*Пароль2@" required ngModel/>
+        <p-password [toggleMask]="true" type="password" name="password" id="password_reg" placeholder="*Пароль2@"
+                    required ngModel/>
         <label for="password_reg">Пароль</label>
     </span>
-    <button pButton class="p-button-success p-button-sm" type="submit" [disabled]="signUp.invalid" (click)="onSignUp(signUp)">
+    <button pButton class="p-button-success p-button-sm" type="submit" [disabled]="signUp.invalid"
+            (click)="onSignUp(signUp)">
       Зарегистрироваться
     </button>
   </form>
-</div>
+</p-card>
 
 <div class="action-container">
   <ng-container *ngIf="loginMode else signUp">

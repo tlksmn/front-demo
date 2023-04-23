@@ -8,6 +8,7 @@ import { AuthComponent } from './auth.component';
 import {ServiceModule} from "../../common/service/service.module";
 import {InputTextModule} from "primeng/inputtext";
 import {ButtonModule} from "primeng/button";
+import {CardModule} from "primeng/card";
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {ButtonModule} from "primeng/button";
     InputMaskModule,
     InputTextModule,
     ButtonModule,
+    CardModule,
   ],
   providers: []
 })
