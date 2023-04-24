@@ -5,6 +5,7 @@ import {LogoutMessageT, SignInT} from "../type/api/auth/auth.type";
 import {SellerT} from "../type/base/seller.type";
 import {UpdateSellerT} from "../type/api/seller/update.seller.type";
 import {BehaviorSubject, Subject, tap} from "rxjs";
+import {DeleteSellerT, ReintegrateSellerT} from "../type/api/seller/reintegrate.seller.type";
 
 @Injectable()
 export class SellerService {
@@ -31,6 +32,14 @@ export class SellerService {
 
   updateSeller(data: UpdateSellerT) {
     return this.apiService.post<SellerT, UpdateSellerT>('seller/update', data, {})
+  }
+
+  reintegrateSeller(id: number) {
+    return this.apiService.post<any, ReintegrateSellerT>('seller/reintegrate', {sellerId: id}, {})
+  }
+
+  deleteSeller(id: number){
+    return this.apiService.post<{message: string}, DeleteSellerT>('seller/delete', {sellerId: id}, {})
   }
 }
 

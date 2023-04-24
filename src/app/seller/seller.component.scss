@@ -38,7 +38,7 @@
   .seller-header-container{
     padding-bottom: 0.4em;
     display: grid;
-    grid-template-columns: 10em[shopName] 8em[rivalSt] 6em[preOrderSt] 6em[promotionSt] 6em[demotionSt] 2.4em[action];
+    grid-template-columns: 10em[shopName] 8em[rivalSt] 6em[preOrderSt] 6em[promotionSt] 6em[demotionSt] 10em[action];
     grid-template-rows: auto;
     &:hover{
       cursor: pointer;

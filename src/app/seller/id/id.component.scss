@@ -1,6 +1,6 @@
 .seller-id-container{
   display: grid;
-  grid-template-columns: 10em[shopName] 8em[rivalSt] 6em[preOrderSt] 6em[promotionSt] 6em[demotionSt] 2.4em[action];
+  grid-template-columns: 10em[shopName] 8em[rivalSt] 6em[preOrderSt] 6em[promotionSt] 6em[demotionSt] 10em[action];
   grid-template-rows: auto;
   align-items: center;
   & > *{
@@ -9,6 +9,6 @@
   .p-button{
     height: 2.2em;
     width: 2.2em;
-    margin-bottom: 0.2em;
+    //margin-bottom: 0.2em;
   }
 }
