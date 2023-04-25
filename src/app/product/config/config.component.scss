@@ -1,6 +1,6 @@
 .config-container{
   display: grid;
-  grid-template-columns: [poinName]6em [available]6em [preOrder]6em [action]4em;
+  grid-template-columns: [poinName]6em [available]8em [preOrder]8em [action]4em;
   grid-template-rows: auto;
   align-items: center;
   padding: 0.1em 0;

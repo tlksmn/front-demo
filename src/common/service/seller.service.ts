@@ -4,7 +4,7 @@ import {SellerResponseApiT} from "../type/api/seller/seller.type";
 import {LogoutMessageT, SignInT} from "../type/api/auth/auth.type";
 import {SellerT} from "../type/base/seller.type";
 import {UpdateSellerT} from "../type/api/seller/update.seller.type";
-import {BehaviorSubject, Subject, tap} from "rxjs";
+import {BehaviorSubject, tap} from "rxjs";
 import {DeleteSellerT, ReintegrateSellerT} from "../type/api/seller/reintegrate.seller.type";
 
 @Injectable()

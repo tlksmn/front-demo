@@ -1,8 +1,11 @@
 .page-container {
   display: flex;
   gap: 1em;
+  align-items: flex-start;
   .seller-view-container {
     min-width: 12em;
+    position: sticky;
+    top: 4em;
   }
   .products-view-container {
     .product-header-container {
