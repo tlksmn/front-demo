@@ -14,10 +14,37 @@
     />
   </div>
   <div>
-    <button type="button" pButton icon="pi pi-times" class="p-button-small p-button-rounded p-button-danger p-button-text" disabled *ngIf="!authService.user.activated"></button>
-    <button type="button" pButton icon="pi pi-refresh" class="p-button-small p-button-rounded p-button-info p-button-text" (click)="reintegrateSeller()"></button>
-    <button type="button" pButton icon="pi pi-wrench" class="p-button-small p-button-rounded p-button-success p-button-text" (click)="updateSeller()"></button>
-    <button type="button" pButton icon="pi pi-trash" class="p-button-small p-button-rounded p-button-danger p-button-text" (click)="deleteSeller()"></button>
-    <button type="submit" pButton icon="pi pi-check" class="p-button-small  p-button-rounded p-button-success p-button-outlined" *ngIf="edited && sellerForm.valid"></button>
+    <button type="button" pButton icon="pi pi-times"
+            class="p-button-small p-button-rounded p-button-danger p-button-text" disabled
+            *ngIf="!authService.user.activated"></button>
+    <button type="button" pButton icon="pi pi-refresh"
+            class="p-button-small p-button-rounded p-button-info p-button-text" (click)="reintegrateSeller()"></button>
+    <button type="button" pButton icon="pi pi-wrench"
+            class="p-button-small p-button-rounded p-button-success p-button-text"
+            (click)="updateSellerOpenModal()"></button>
+    <button type="button" pButton icon="pi pi-trash"
+            class="p-button-small p-button-rounded p-button-danger p-button-text" (click)="deleteSeller()"></button>
+    <button type="submit" pButton icon="pi pi-check"
+            class="p-button-small  p-button-rounded p-button-success p-button-outlined"
+            *ngIf="edited && sellerForm.valid"></button>
   </div>
 </form>
+
+<p-dialog header="Обновление данных продавца" [(visible)]="changeMode" [modal]="true" [draggable]="true"
+          [resizable]="true" [style]="{ width: '50em' }" [maximizable]="true">
+  <form class="update-seller-form" [formGroup]="sellerUpdateForm">
+    <span class="p-float-label">
+      <input [readonly]="true" pInputText type="email" name="email" autocomplete="off" id="email" placeholder="e1@mail.kz"
+             formControlName="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+        <label for="email">Почта</label>
+    </span>
+    <span class="p-float-label">
+      <p-password [toggleMask]="true" type="password" id="password" placeholder="*Пароль1@" required
+                  formControlName="password"/>
+        <label for="password">Новый пароль</label>
+    </span>
+    <button pButton type="submit" class="p-button-sm" [disabled]="sellerUpdateForm.invalid" (click)="updateSeller()">
+      Обновить
+    </button>
+  </form>
+</p-dialog>

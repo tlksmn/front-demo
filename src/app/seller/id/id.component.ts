@@ -16,7 +16,9 @@ export class IdComponent implements OnInit, OnDestroy {
   @Input('seller') seller!: SellerT;
   edited: boolean = false;
   sellerForm!: FormGroup;
+  sellerUpdateForm!: FormGroup;
   subscriptions$: Subscription[] = [];
+  changeMode: boolean = false;
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -33,7 +35,11 @@ export class IdComponent implements OnInit, OnDestroy {
       rivalStatus: new FormControl(this.seller.rivalStatus),
       demotion: new FormControl(this.seller.demotion),
       promotion: new FormControl(this.seller.promotion)
-    })
+    });
+    this.sellerUpdateForm = this.formBuilder.group({
+      email: new FormControl(this.seller.email),
+      password: new FormControl(this.seller.password)
+    });
     if (!this.authService.user.activated) {
       for (const control in this.sellerForm.controls) {
         this.sellerForm.controls[control].disable()
@@ -106,8 +112,18 @@ export class IdComponent implements OnInit, OnDestroy {
     }
   }
 
-  updateSeller() {
+  updateSellerOpenModal() {
     if (confirm('Вы пытаетесь обновить данные продавца. Вы уверены ?'))
-      this.messageService.add({severity: 'success', summary: 'Продавец', detail: 'Продавец изменен успешно!'});
+      this.showModalToEdit()
+    this.messageService.add({severity: 'success', summary: 'Продавец', detail: 'Продавец изменен успешно!'});
+  }
+
+  updateSeller(){
+    console.log(this.sellerUpdateForm.value)
+  }
+
+  private showModalToEdit() {
+    console.log(this.seller)
+    this.changeMode = true;
   }
 }

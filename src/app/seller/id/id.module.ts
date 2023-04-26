@@ -4,6 +4,9 @@ import { IdComponent } from './id.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {InputSwitchModule} from "primeng/inputswitch";
 import {ButtonModule} from "primeng/button";
+import {DialogModule} from "primeng/dialog";
+import {InputTextModule} from "primeng/inputtext";
+import {PasswordModule} from "primeng/password";
 
 
 
@@ -19,7 +22,10 @@ import {ButtonModule} from "primeng/button";
     FormsModule,
     ReactiveFormsModule,
     InputSwitchModule,
-    ButtonModule
+    ButtonModule,
+    DialogModule,
+    InputTextModule,
+    PasswordModule
   ]
 })
 export class IdModule { }
