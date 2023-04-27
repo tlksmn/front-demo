@@ -69,7 +69,11 @@ export class RivalComponent implements OnInit, OnDestroy {
   }
 
   submitForm() {
-    const subscription = this.productService.updateRival({...this.rivalForm.value, id: this.rival.id})
+    const subscription = this.productService.updateRival({
+      ...this.rivalForm.value,
+      rivalSeller: this.rival.rivalSeller,
+      id: this.rival.id
+    })
       .pipe(
         tap((value) => {
           Object.assign(this.rival, value);
