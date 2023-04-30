@@ -1,11 +1,11 @@
 import {BehaviorSubject, catchError, NEVER, Observable, Subscription, tap} from "rxjs";
 import {Component, OnDestroy} from '@angular/core';
+import {MessageService} from "primeng/api";
+import {NgForm} from "@angular/forms";
+
 import {SellerService} from "../../common/service/seller.service";
 import {SellerResponseApiT} from "../../common/type/api/seller/seller.type";
-import {NgForm} from "@angular/forms";
-import {NotificationService} from "../../common/notification/notification.service";
 import {AuthService} from "../../common/service/auth.service";
-import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-seller',
@@ -15,7 +15,6 @@ import {MessageService} from "primeng/api";
 export class SellerComponent implements OnDestroy {
   constructor(
     private readonly sellerService: SellerService,
-    private readonly notificationService: NotificationService,
     readonly authService: AuthService,
     private readonly messageService: MessageService
   ) {

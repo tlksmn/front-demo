@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
 import {catchError, NEVER, Observable, switchMap, tap, timer} from "rxjs";
+import {Router} from "@angular/router";
+import {MessageService} from "primeng/api";
 
 import {AdminService} from "../../common/service/admin.service";
 import {UsersListT} from "../../common/type/api/admin/user.list.type";
-import {NotificationService} from "../../common/notification/notification.service";
 
 @Component({
   selector: 'app-admin',
@@ -15,7 +15,7 @@ export class AdminComponent implements OnInit{
   constructor(
     private readonly adminService: AdminService,
     private readonly router: Router,
-    private readonly notificationService: NotificationService
+    private readonly messageService: MessageService
   ) {}
   password: string = '';
 
@@ -30,11 +30,11 @@ export class AdminComponent implements OnInit{
     .pipe(
       switchMap(()=> this.adminService.getUserList(this.password)),
       catchError((e)=> {
-        this.notificationService.error(e.error.message)
+        this.messageService.add({severity:'error', summary: 'ошибка', detail: e.error.message})
         return NEVER
       }),
       tap(()=> {
-        this.notificationService.success('🚀🔥')
+        this.messageService.add({severity:'success', summary: 'Админ', detail: '🚀🔥'})
       })
     )
 }

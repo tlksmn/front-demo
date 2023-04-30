@@ -9,7 +9,6 @@ import localeRu from '@angular/common/locales/ru';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {NotificationModule} from "../common/notification/notification.module";
 import {AuthGuard} from "../common/guard/auth.guard";
 
 registerLocaleData(localeRu, 'ru');
@@ -21,7 +20,6 @@ registerLocaleData(localeRu, 'ru');
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NotificationModule,
     BrowserAnimationsModule,
     ToastModule,
     MessagesModule
