@@ -2,7 +2,8 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {UserT} from "../../../common/type/base/user.type";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {AdminService} from "../../../common/service/admin.service";
-import {Subscription, tap} from "rxjs";
+import {catchError, NEVER, Subscription, tap} from "rxjs";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-id-admin',
@@ -19,8 +20,10 @@ export class IdAdminComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly adminService: AdminService
-  ) {}
+    private readonly adminService: AdminService,
+    private readonly messageService: MessageService
+  ) {
+  }
 
   ngOnInit() {
     this.userForm = this.formBuilder.group({
@@ -57,8 +60,19 @@ export class IdAdminComponent implements OnInit, OnDestroy {
     this.openSellers = !this.openSellers
   }
 
-  deleteUser(){
-    const subscription = this.adminService.deleteSeller({id: this.user.id}, this.password).subscribe()
-    this.subscriptions.push(subscription);
+  deleteUser() {
+    if (confirm('вы хотите удалить ' + this.user.name + '? ')) {
+      const subscription = this.adminService.deleteSeller({id: this.user.id}, this.password)
+        .pipe(
+          tap((res) => {
+            this.messageService.add({severity: 'success', detail: res.message})
+          }),
+          catchError((e) => {
+            this.messageService.add({severity: 'error', detail: e.error.message})
+            return NEVER
+          })
+        ).subscribe()
+      this.subscriptions.push(subscription);
+    }
   }
 }
