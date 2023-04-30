@@ -1,7 +1,6 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {UserT} from "../../../common/type/base/user.type";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {AuthService} from "../../../common/service/auth.service";
 import {AdminService} from "../../../common/service/admin.service";
 import {Subscription, tap} from "rxjs";
 
@@ -18,11 +17,15 @@ export class IdAdminComponent implements OnInit, OnDestroy {
   edited: boolean = false;
   openSellers: boolean = false;
 
-  constructor(private readonly formBuilder: FormBuilder, private readonly adminService: AdminService) {}
+  constructor(
+    private readonly formBuilder: FormBuilder,
+    private readonly adminService: AdminService
+  ) {}
 
   ngOnInit() {
     this.userForm = this.formBuilder.group({
-      activated: new FormControl(this.user.activated)
+      activated: new FormControl(this.user.activated),
+      accessed: new FormControl(this.user.accessed)
     })
     const subscription = this.userForm.valueChanges.pipe(
       tap(() => {
@@ -49,7 +52,13 @@ export class IdAdminComponent implements OnInit, OnDestroy {
       ).subscribe()
     this.subscriptions.push(subscription)
   }
-  changeSellerMode(){
+
+  changeSellerMode() {
     this.openSellers = !this.openSellers
+  }
+
+  deleteUser(){
+    const subscription = this.adminService.deleteSeller({id: this.user.id}, this.password).subscribe()
+    this.subscriptions.push(subscription);
   }
 }

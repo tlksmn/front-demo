@@ -9,6 +9,7 @@ export type UserT = AT & {
   activated: boolean;
   name: string;
   hash: string;
+  accessed: boolean;
   count: ProductCountT
   sellers: SellerT[];
   cities: CityT[];

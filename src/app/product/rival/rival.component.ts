@@ -1,7 +1,7 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {MessageService} from "primeng/api";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {BehaviorSubject, catchError, NEVER, Subject, Subscription, tap} from "rxjs";
+import {BehaviorSubject, catchError, NEVER, Subscription, tap} from "rxjs";
 
 import {RivalConfigT} from "../../../common/type/base/rival.config.type";
 import {ProductService} from "../../../common/service/product.service";
@@ -71,17 +71,20 @@ export class RivalComponent implements OnInit, OnDestroy {
   submitForm() {
     const subscription = this.productService.updateRival({
       ...this.rivalForm.value,
-      rivalSeller: this.rival.rivalSeller,
       id: this.rival.id
     })
       .pipe(
         tap((value) => {
           Object.assign(this.rival, value);
           this.showSaveBtn = !this.showSaveBtn;
+          this.priceEdited = false;
+          this.minPriceEdited = false;
           this.messageService.add({summary: 'Обновление цены товара', detail: 'Данные обновлены', severity: 'success'})
         }),
         catchError((e) => {
           this.messageService.add({summary: 'Ошибка сервера', detail: e.error.message, severity: 'error'})
+          this.priceEdited = false;
+          this.minPriceEdited = false;
           return NEVER
         })
       ).subscribe();

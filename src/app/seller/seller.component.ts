@@ -39,17 +39,21 @@ export class SellerComponent implements OnDestroy {
     const subscription = this.sellerService.addSeller(form.value).pipe(
       tap((value) => {
         this.messageService.add({severity: 'success', summary: 'Добавление магазина', detail: 'Успешно добавлено.'})
-        this.messageService.add({severity: 'warn', summary: 'Добавление магазина', detail: 'Подождите 1-2 минуты. \nВсе зависит от количества товаров и точек продаж.'})
+        this.messageService.add({
+          severity: 'warn',
+          summary: 'Добавление магазина',
+          detail: 'Подождите 1-2 минуты. \nВсе зависит от количества товаров и точек продаж.'
+        })
       }),
       catchError((e) => {
         this.messageService.add({severity: 'error', summary: 'Добавление магазина', detail: e.error.message})
-        if(e.error.statusCode!==406)
+        if (e.error.statusCode !== 406)
           this.messageService.add({
             severity: 'error',
             summary: 'Авторизация',
             detail: 'Неправильный пароль или логин. Повторите позже'
           })
-        else
+        else if (e.error.statusCode !== 404)
           this.messageService.add({
             severity: 'error',
             summary: 'Авторизация',

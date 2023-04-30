@@ -3,6 +3,7 @@
   <div *ngFor="let user of response.list">
     <app-id-admin [user]="user" [password]="password"></app-id-admin>
   </div>
+  <div class="count">всего пользователей :: {{response.total}}</div>
 </div>
 
 <ng-template #adminHeader>
@@ -12,6 +13,7 @@
     <div>эл. почта</div>
     <div>телефон</div>
     <div>активация</div>
+    <div>доступ</div>
     <div></div>
   </div>
 </ng-template>

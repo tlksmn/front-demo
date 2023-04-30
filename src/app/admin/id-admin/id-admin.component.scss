@@ -1,9 +1,9 @@
 .user-container{
   display: grid;
-  grid-template-columns: [id]1em [name]14em [email]12em [phone]10em [activated]6em [action]4em;
+  grid-template-columns: [id]1em [name]14em [email]12em [phone]10em [activated]6em [accessed]6em [action]4em;
   padding-top: 0.2em;
 
-  button[type=submit]{
+  button[type=submit], & button[type=button],{
     border: none;
     background: none;
   }

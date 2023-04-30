@@ -5,6 +5,7 @@ import {UserT} from "../type/base/user.type";
 import {HttpClient} from "@angular/common/http";
 import {take} from "rxjs";
 import {environment} from "../../environments/environment";
+import {DeleteSellerT} from "../type/api/admin/delete.seller.type";
 
 @Injectable()
 export class AdminService{
@@ -22,5 +23,9 @@ export class AdminService{
   updateUser(data: UpdateUserT, password: string){
     return this.httpClient.post<UserT>(this.adminUrl+'update', {...data, pass: password}, {})
       .pipe(take(1))
+  }
+
+  deleteSeller(data: DeleteSellerT, password: string){
+    return this.httpClient.post<{message: string}>(this.adminUrl+'delete', {...data, pass: password}, {})
   }
 }

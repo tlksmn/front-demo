@@ -15,6 +15,10 @@
     <input class="toggle-button" type="checkbox" formControlName="activated"/>
   </div>
   <div>
+    <input class="toggle-button" type="checkbox" formControlName="accessed"/>
+  </div>
+  <div>
+    <button type="button" (click)="deleteUser()">❌</button>
     <button *ngIf="userForm.valid && edited" type="submit">✅</button>
   </div>
 </form>
