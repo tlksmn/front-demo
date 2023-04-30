@@ -21,13 +21,19 @@
   .action {
     padding: 0.6em;
     border: 1px solid #3787FF;
+    user-select: none;
     &:hover{
       cursor: pointer;
       background: #468eff;
-      color: #d9d9d9;
+      color: #ffffff;
+      font-weight: 500;
     }
     &.logout{
       margin-right: 1em;
+    }
+    &.active{
+      background: #468eff;
+      color: #fff5f5;
     }
   }
 }
