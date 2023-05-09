@@ -8,6 +8,7 @@
     top: 4em;
   }
   .products-view-container {
+    padding-bottom: 6em;
     .product-header-container {
       display: grid;
       grid-template-columns: [img]2em [sku]5em [brand]8em [name]32em;
