@@ -10,6 +10,8 @@ import localeRu from '@angular/common/locales/ru';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {AuthGuard} from "../common/guard/auth.guard";
+import {ButtonModule} from "primeng/button";
+import {MenuModule} from "primeng/menu";
 
 registerLocaleData(localeRu, 'ru');
 
@@ -22,7 +24,9 @@ registerLocaleData(localeRu, 'ru');
     AppRoutingModule,
     BrowserAnimationsModule,
     ToastModule,
-    MessagesModule
+    MessagesModule,
+    ButtonModule,
+    MenuModule
   ],
   providers: [AuthGuard, MessageService],
   bootstrap: [AppComponent]

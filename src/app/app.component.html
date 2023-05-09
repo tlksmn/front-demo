@@ -2,16 +2,23 @@
 <div class="app-header">
   <ng-container *ngIf="(authService.status | async) else notAuthorizedUser">
     <div class="header">
-      <a class="action" routerLink="/" >Главная</a>
-      <a class="action" routerLink="sellers" routerLinkActive="active">Продавцы</a>
+      <div class="action">
+        <a class="pi pi-home" routerLink="/"> Главная</a>
+      </div>
+      <div class="action">
+        <a class=" pi pi-users" routerLink="sellers" routerLinkActive="active"> Продавцы</a>
+      </div>
     </div>
-    <div class="action logout">
-      <a (click)="logout()">Выйти</a>
+    <div (click)="settings.toggle($event)" class="action logout" *ngIf="authService.user as user">
+      <a class="pi pi-sliders-v"> {{user.name}}</a>
+      <p-menu #settings [model]="items" [popup]="true"></p-menu>
     </div>
   </ng-container>
   <ng-template #notAuthorizedUser>
-    <div class="action">
-      <a routerLink="/auth">Авторизация</a>
+    <div class="header">
+      <div class="action">
+        <a class="pi pi-sign-in" routerLink="/auth"> Авторизация</a>
+      </div>
     </div>
   </ng-template>
 </div>

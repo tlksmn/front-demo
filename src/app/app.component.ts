@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {catchError, NEVER, tap} from "rxjs";
+import {catchError, NEVER, Subscription, tap} from "rxjs";
 import {MessageService} from "primeng/api";
 
 import {UserT} from "../common/type/base/user.type";
@@ -11,13 +11,30 @@ import {AuthService} from "../common/service/auth.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
+  private subscriptions: Subscription[] = []
+
   constructor(
     readonly authService: AuthService,
     private readonly router: Router,
     private readonly messageService: MessageService
   ) {
   }
+
+  items = [
+    {
+      label: 'Профиль',
+      icon: 'pi pi-user',
+      command: async () => {
+        await this.router.navigate(['/me']);
+      }
+    },
+    {
+      label: 'Выйти',
+      icon: 'pi pi-sign-out',
+      command: () => this.logout()
+    }
+  ]
 
   ngOnInit() {
     const subscription = this.authService.me().pipe(
@@ -27,17 +44,23 @@ export class AppComponent implements OnInit {
           summary: 'Авторизация',
           detail: 'Войдите в систему чтобы продолжить'
         })
-        return NEVER
+        return NEVER;
       }),
       tap((user: UserT) => {
-        this.messageService.add({severity: 'success', summary: 'Авторизация', detail: 'Успешно вошли в систему'})
+        this.messageService.add({severity: 'success', summary: 'Авторизация', detail: 'Успешно вошли в систему'});
       }),
-    ).subscribe()
-    setTimeout(() => subscription.unsubscribe(), 5000)
-    return subscription
+    ).subscribe();
+    this.subscriptions.push(subscription);
   }
 
-  logout() {
+  ngOnDestroy() {
+    this.subscriptions.forEach(e => {
+      e.unsubscribe();
+    })
+    this.subscriptions = [];
+  }
+
+  private logout() {
     const subscription = this.authService.signOut().pipe(
       tap(() => {
         this.messageService.add({severity: 'success', summary: 'Авторизация', detail: 'Выход выполнен успешно'})
@@ -52,7 +75,6 @@ export class AppComponent implements OnInit {
         return NEVER
       }),
     ).subscribe()
-    setTimeout(() => subscription.unsubscribe(), 5000)
-    return subscription
+    this.subscriptions.push(subscription)
   }
 }
