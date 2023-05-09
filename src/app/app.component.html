@@ -6,7 +6,7 @@
       <a class="action pi pi-users" routerLink="sellers" routerLinkActive="active"> Продавцы</a>
     </div>
     <div (click)="settings.toggle($event)" class="action logout" *ngIf="authService.user as user">
-      <a class="pi pi-sliders-v"> {{user.name}}</a>
+      <a class="pi pi-cog"> {{user.name}}</a>
       <p-menu #settings [model]="items" [popup]="true"></p-menu>
     </div>
   </ng-container>
