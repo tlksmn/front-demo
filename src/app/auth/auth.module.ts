@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {FormsModule} from "@angular/forms";
 import { PasswordModule } from 'primeng/password';
 import { InputMaskModule } from 'primeng/inputmask';
@@ -23,6 +23,7 @@ import {CardModule} from "primeng/card";
     InputTextModule,
     ButtonModule,
     CardModule,
+    NgOptimizedImage,
   ],
   providers: []
 })
