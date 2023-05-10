@@ -15,16 +15,26 @@
   </div>
   <div>
     <button type="button" pButton icon="pi pi-times"
+            pTooltip="ваш аккаунт еще не активирован; обратитесь к администратору"
+            tooltipPosition="bottom"
             class="p-button-small p-button-rounded p-button-danger p-button-text" disabled
             *ngIf="!authService.user.activated"></button>
     <button type="button" pButton icon="pi pi-refresh"
+            pTooltip="Синхронизировать данные магазина"
+            tooltipPosition="bottom"
             class="p-button-small p-button-rounded p-button-info p-button-text" (click)="reintegrateSeller()"></button>
     <button type="button" pButton icon="pi pi-wrench"
+            pTooltip="Обновить магазин"
+            tooltipPosition="bottom"
             class="p-button-small p-button-rounded p-button-success p-button-text"
             (click)="updateSellerOpenModal()"></button>
     <button type="button" pButton icon="pi pi-trash"
+            pTooltip="Удалить магазин"
+            tooltipPosition="bottom"
             class="p-button-small p-button-rounded p-button-danger p-button-text" (click)="deleteSeller()"></button>
     <button type="submit" pButton icon="pi pi-check"
+            pTooltip="Сохранить"
+            tooltipPosition="bottom"
             class="p-button-small  p-button-rounded p-button-success p-button-outlined"
             *ngIf="edited && sellerForm.valid"></button>
   </div>

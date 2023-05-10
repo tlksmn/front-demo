@@ -6,6 +6,7 @@ import {IdModule} from "./id/id.module";
 import {ButtonModule} from "primeng/button";
 import {PasswordModule} from "primeng/password";
 import {ChipsModule} from "primeng/chips";
+import {DockModule} from "primeng/dock";
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {ChipsModule} from "primeng/chips";
     IdModule,
     ButtonModule,
     PasswordModule,
-    ChipsModule
+    ChipsModule,
+    DockModule
   ]
 })
 export class SellerModule { }

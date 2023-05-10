@@ -113,9 +113,10 @@ export class IdComponent implements OnInit, OnDestroy {
   }
 
   updateSellerOpenModal() {
-    if (confirm('Вы пытаетесь обновить данные продавца. Вы уверены ?'))
+    if (confirm('Вы пытаетесь обновить данные продавца. Вы уверены ?')){
       this.showModalToEdit()
-    this.messageService.add({severity: 'success', summary: 'Продавец', detail: 'Продавец изменен успешно!'});
+      this.messageService.add({severity: 'success', summary: 'Продавец', detail: 'Продавец изменен успешно!'});
+    }
   }
 
   updateSeller(){

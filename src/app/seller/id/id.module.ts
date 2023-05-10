@@ -7,6 +7,7 @@ import {ButtonModule} from "primeng/button";
 import {DialogModule} from "primeng/dialog";
 import {InputTextModule} from "primeng/inputtext";
 import {PasswordModule} from "primeng/password";
+import {DockModule} from "primeng/dock";
 
 
 
@@ -25,7 +26,8 @@ import {PasswordModule} from "primeng/password";
     ButtonModule,
     DialogModule,
     InputTextModule,
-    PasswordModule
+    PasswordModule,
+    DockModule
   ]
 })
 export class IdModule { }
