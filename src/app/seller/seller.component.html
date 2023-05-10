@@ -1,7 +1,9 @@
 <div class="seller-list-container">
   <div *ngIf="request$|async as response">
     <div class="activation-container" *ngIf="authService.user.activated else notActivated">
-      <div>код для chrome extension <a href="https://chrome.google.com/webstore/detail/biy-standard/nplpolmjhoeefjnloladiknpdfobfdkn" target="_blank">Standard Biy</a></div>
+      <div>код для chrome extension <a
+        href="https://chrome.google.com/webstore/detail/biy-standard/nplpolmjhoeefjnloladiknpdfobfdkn"
+        target="_blank">Standard Biy</a></div>
       <div (click)="copyClipboard(authService.user.hash!)" class="code">{{authService.user.hash}}</div>
     </div>
     <div *ngIf="response.total>0 else noContent">
@@ -11,7 +13,7 @@
       </div>
     </div>
     <div class="seller-add-controller">
-      <div *ngIf="authService.user.accessed else notAccessed" >
+      <div *ngIf="authService.user.accessed else notAccessed">
         <ng-container *ngTemplateOutlet="addSelectFormTemplate"/>
       </div>
     </div>
@@ -21,17 +23,25 @@
 <ng-template #addSelectFormTemplate>
   <form #addSellerForm="ngForm" *ngIf="addModeStream|async">
      <span class="p-float-label">
-      <input pInputText type="email" name="email" autocomplete="off" id="email" placeholder="e1@mail.kz" required ngModel pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+      <input pInputText type="email" name="email" autocomplete="off" id="email" placeholder="e1@mail.kz" required
+             ngModel pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
       <label for="email">Почта магазина</label>
     </span>
     <span class="p-float-label">
-        <p-password [toggleMask]="true" type="password" name="password" id="password" placeholder="*Пароль1@" required ngModel/>
+        <p-password [toggleMask]="true" type="password" name="password" id="password" placeholder="*Пароль1@" required
+                    ngModel/>
         <label for="password">Пароль</label>
     </span>
-    <button pButton icon="pi pi-check" class="p-button-sm p-button-success p-button-rounded p-button-text p-button-raised" [disabled]="addSellerForm.invalid" (click)="addSeller(addSellerForm)"></button>
-    <button type="button" pButton icon="pi pi-times" class="p-button-small p-button-rounded p-button-raised p-button-danger p-button-text" *ngIf="(addModeStream|async); let mode" (click)="changeMode(!mode)"></button>
+    <button pButton icon="pi pi-check"
+            class="p-button-sm p-button-success p-button-rounded p-button-text p-button-raised"
+            [disabled]="addSellerForm.invalid" (click)="addSeller(addSellerForm)"></button>
+    <button type="button" pButton icon="pi pi-times"
+            class="p-button-small p-button-rounded p-button-raised p-button-danger p-button-text"
+            *ngIf="(addModeStream|async); let mode" (click)="changeMode(!mode)"></button>
   </form>
-  <button type="button" pButton icon="pi pi-plus" class="p-button-secondary p-button-sm p-button-rounded p-button-text p-button-raised" *ngIf="!(addModeStream|async); let mode" (click)="changeMode(mode)"></button>
+  <button type="button" pButton icon="pi pi-plus"
+          class="p-button-secondary p-button-sm p-button-rounded p-button-text p-button-raised"
+          *ngIf="!(addModeStream|async); let mode" (click)="changeMode(mode)"></button>
 </ng-template>
 
 <ng-template #sellerHeader>
@@ -53,10 +63,15 @@
 
 <ng-template #notActivated>
   <div class="activation-container">
-    <div>Обратитесь к <a href="https://t.me/sha_khan" target="_blank">администратору</a>, чтобы получить доступ ключу к <a href="https://chrome.google.com/webstore/detail/biy-standard/nplpolmjhoeefjnloladiknpdfobfdkn" target="_blank">Standard Biy</a>.</div>
+    <div>Обратитесь к <a href="https://t.me/sha_khan" target="_blank">администратору</a>, чтобы получить доступ ключу к
+      <a href="https://chrome.google.com/webstore/detail/biy-standard/nplpolmjhoeefjnloladiknpdfobfdkn" target="_blank">Standard
+        Biy</a>.
+    </div>
   </div>
 </ng-template>
 
 <ng-template #notAccessed>
-  <div>Обратитесь к <a href="https://t.me/sha_khan" target="_blank">администратору</a>, чтобы получить доступ добавлять новых продавцов.</div>
+  <div>Обратитесь к <a href="https://t.me/sha_khan" target="_blank">администратору</a>, чтобы получить доступ добавлять
+    новых продавцов.
+  </div>
 </ng-template>

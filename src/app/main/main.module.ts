@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainComponent } from './main.component';
+import {AccordionModule} from "primeng/accordion";
+import {CardModule} from "primeng/card";
 
 
 
@@ -9,7 +11,9 @@ import { MainComponent } from './main.component';
     MainComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    AccordionModule,
+    CardModule
   ]
 })
 export class MainModule { }
