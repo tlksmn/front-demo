@@ -1,4 +1,12 @@
 .auth-container {
+  .img-logo{
+    display: flex;
+    justify-content: center;
+    img{
+      max-height: 10em;
+      max-width: 10em;
+    }
+  }
   form {
     display: flex;
     flex-direction: column;

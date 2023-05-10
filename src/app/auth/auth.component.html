@@ -1,7 +1,9 @@
 
 <p-card class="auth-container" header="Авторизация" [style]="{'min-width': '320px', 'margin-top': '8em'}">
   <ng-template pTemplate="header">
-    <img ngSrc="/assets/logo.jpg" style="max-height: 14em;" height="2160" width="2160">
+    <div class="img-logo">
+      <img ngSrc="/assets/logo.jpg" height="2160" width="2160" alt="logo biy.kz">
+    </div>
   </ng-template>
   <form *ngIf="loginMode" #signIn="ngForm">
     <h1>Вход в личный кабинет</h1>
