@@ -2,8 +2,8 @@
   <div *ngIf="request$|async as response">
     <div class="activation-container" *ngIf="authService.user.activated else notActivated">
       <div>код для chrome extension <a
-        href="https://chrome.google.com/webstore/detail/biy-standard/nplpolmjhoeefjnloladiknpdfobfdkn"
-        target="_blank">Standard Biy</a></div>
+        href="https://chrome.google.com/webstore/detail/biy-standard/nplpolmjhoeefjnloladiknpdfobfdkn" target="_blank">Standard
+        Biy</a></div>
       <div (click)="copyClipboard(authService.user.hash!)" class="code">{{authService.user.hash}}</div>
     </div>
     <div *ngIf="response.total>0 else noContent">

@@ -15,10 +15,13 @@ import {ProductModule} from "./product/product.module";
 import {ProductIdModule} from "./product/product-id/product-id.module";
 import {AdminComponent} from "./admin/admin.component";
 import {AdminModule} from "./admin/admin.module";
+import {MeModule} from "./me/me.module";
+import {MeComponent} from "./me/me.component";
 
 const routes: Routes = [
   {path: 'auth', component: AuthComponent, title: 'biy.kz | Авторизация'},
   {path: 'home', redirectTo: '/'},
+  {path: 'me', component: MeComponent, canActivate: [AuthGuard], title: 'biy.kz | Личный кабинет пользователя'},
   {path: 'sellers', component: SellerComponent, canActivate: [AuthGuard], title: 'biy.kz | Продавцы'},
   {path: 'seller/:id/products', component: ProductComponent, canActivate: [AuthGuard], title: 'biy.kz | Товары'},
   {path: 'ruby/admin', component: AdminComponent},
@@ -27,7 +30,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), AuthModule, MainModule, NfModule, SellerModule, ProductModule, ProductIdModule, AdminModule],
+  imports: [RouterModule.forRoot(routes), AuthModule, MainModule, MeModule, NfModule, SellerModule, ProductModule, ProductIdModule, AdminModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
