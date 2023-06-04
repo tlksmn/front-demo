@@ -12,3 +12,6 @@ For route path list see [app-routing.module.ts](src/app/app-routing.module.ts:21
 
 ### Full documentation 
 You can see in `http://localhost:4200/` in main page
+
+### [Backend repository](https://github.com/tlksmn/api_biy)
+### [Biy Standard Chrome Extension](https://github.com/tlksmn/standard-biy)
